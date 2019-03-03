@@ -12,6 +12,25 @@ footer{
   padding: 15px;
   background-color: rgb(192,192,192);
 }
-footer h1,h2,h3,h4,h5,h6{
+footer h1,
+footer h2,
+footer h3,
+footer h4,
+footer h5,
+footer h6{
   color: rgb(255,140,0);
+}
+
+
+.section-regular{
+  text-align: center;
+  padding: 50px;
+}
+
+.section-orange{
+  background-color: rgb(255,140,0);
+}
+
+.section-white{
+  background-color: rgb(255,255,255);
 }
