@@ -4,6 +4,9 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const app = express();
 const validator = require('express-validator');
+const router = express.Router();
+
+
 
 //new
 const cookieParser = require('cookie-parser');
@@ -58,10 +61,10 @@ app.set('view engine', 'ejs');
 app.set('views','views');
 
 global.connection = mysql.createConnection({  // DataBase Connection
-	host     : 'localhost',
-	user     : 'root',
-	password : 'matematica970',
-	database : 'teste',
+	host     : 'sql7.freemysqlhosting.net',
+	user     : 'sql7281624',
+	password : 'DTgG1PXgSd',
+	database : 'sql7281624',
 }).on('enqueue', function (sequence) {
 	if ('Query' === sequence.constructor.name) {
 		console.log(sequence.sql);
@@ -86,3 +89,100 @@ app.use('/login', require('./controllers/login.route'));
 app.use('/logout', require('./controllers/logout.route'));
 app.use('/profile', require('./controllers/profile.route'));
 app.use('/public', express.static('public'));
+app.use('/rate', require('./controllers/user.route'));
+
+router.post('/rate', function(){
+	var options = {
+		uri : 'https://wwwcie.ups.com/rest/Rate',
+		method: 'POST',
+		json: {
+				"UPSSecurity":{
+				   "UsernameToken":{
+					  "Username":"DiogoVieira96",
+					  "Password":"TesteIsi2019"
+				   },
+				   "ServiceAccessToken":{
+					  "AccessLicenseNumber":"4D5C1DD8D0D5849D"
+				   }
+				},
+				"RateRequest":{
+				   "Request":{
+					  "RequestOption":"Shop",
+					  "TransactionReference":{
+						 "CustomerContext":"Your Customer Context"
+					  }
+				   },
+				   "Shipment":{
+					  "Shipper":{
+						 "Name":"Diogo Vieira",
+						 "ShipperNumber":"82Y418",
+						 "Address":{
+							"AddressLine":[
+							   "Rua antonio candido pinto n51 6dt fr"
+							],
+							"City":"Braga",
+							"StateProvinceCode":"",
+							"PostalCode":"4715-400",
+							"CountryCode":"PT"
+						 }
+					  },
+					  "ShipTo":{
+						 "Name":"Manuel Cunha",
+						 "Address":{
+							"AddressLine":[
+							   "Rua da venda de cima"
+							],
+							"City":"Braga",
+							"StateProvinceCode":"",
+							"PostalCode":"4705-885",
+							"CountryCode":"PT"
+						 }
+					  },
+					  "ShipFrom":{
+						 "Name":"Diogo Vieira",
+						 "Address":{
+							"AddressLine":[
+							   "Rua Antonio candido pinto"
+							],
+							"City":"Braga",
+							"StateProvinceCode":"",
+							"PostalCode":"4700-234",
+							"CountryCode":"PT"
+						 }
+					  },
+					  "Service":{
+						 "Code":"11",
+						 "Description":"Service Code Description"
+					  },
+					  "Package":{
+						 "PackagingType":{
+							"Code":"00",
+							"Description":""
+						 },
+						 "Dimensions":{
+							"UnitOfMeasurement":{
+							   "Code":"CM",
+							   "Description":"Centimeters"
+							},
+							"Length":"100",
+							"Width":"50",
+							"Height":"20"
+						 },
+						 "PackageWeight":{
+							"UnitOfMeasurement":{
+							   "Code":"KGS",
+							   "Description":"Kilograms"
+							},
+							"Weight":"65"
+						 }
+					  },
+					  "ShipmentRatingOptions":{
+						 "NegotiatedRatesIndicator":""
+					  }
+				   }
+				}
+			 }	
+		}
+		console.log('cona');
+		console.log(options);
+});
