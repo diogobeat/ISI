@@ -12,10 +12,6 @@ router.get('/', global.secure('admin'), function(request, response) {
 });
 
 
-router.get('/rate', function(request, response) {
-	
-});
-
 router.post('/rate', function(req,res){
 	var options = {
 		uri : 'https://wwwcie.ups.com/rest/Rate',
