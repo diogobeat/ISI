@@ -1,116 +1,130 @@
 const express = require('express');
 const router = express.Router();
+const request = require('request');
 
-router.post('/', function(req,res){
+
+
+const headersOpt = {  
+	"content-type": "application/json",
+};
+
+
+function sendrate(){
 	var options = {
-		uri : 'https://wwwcie.ups.com/rest/Rate',
+		url : 'https://wwwcie.ups.com/rest/Rate',
 		method: 'POST',
+		dataType : 'json',
+		headers: headersOpt,
 		json: {
-				"UPSSecurity":{
-				   "UsernameToken":{
-					  "Username":"DiogoVieira96",
-					  "Password":"TesteIsi2019"
-				   },
-				   "ServiceAccessToken":{
-					  "AccessLicenseNumber":"4D5C1DD8D0D5849D"
-				   }
+			"UPSSecurity":{
+				"UsernameToken":{
+					"Username":"DiogoVieira96",
+					"Password":"TesteIsi2019"
 				},
-				"RateRequest":{
-				   "Request":{
-					  "RequestOption":"Shop",
-					  "TransactionReference":{
-						 "CustomerContext":"Your Customer Context"
-					  }
-				   },
-				   "Shipment":{
-					  "Shipper":{
-						 "Name":"Diogo Vieira",
-						 "ShipperNumber":"82Y418",
-						 "Address":{
+				"ServiceAccessToken":{
+					"AccessLicenseNumber":"4D5C1DD8D0D5849D"
+				}
+			},
+			"RateRequest":{
+				"Request":{
+					"RequestOption":"Shop",
+					"TransactionReference":{
+						"CustomerContext":"Your Customer Context"
+					}
+				},
+				"Shipment":{
+					"Shipper":{
+						"Name":"Diogo Vieira",
+						"ShipperNumber":"82Y418",
+						"Address":{
 							"AddressLine":[
-							   "Rua antonio candido pinto n51 6dt fr"
+								"Rua antonio candido pinto n51 6dt fr"
 							],
 							"City":"Braga",
 							"StateProvinceCode":"",
 							"PostalCode":"4715-400",
 							"CountryCode":"PT"
-						 }
-					  },
-					  "ShipTo":{
-						 "Name":"Manuel Cunha",
-						 "Address":{
+						}
+					},
+					"ShipTo":{
+						"Name":"Manuel Cunha",
+						"Address":{
 							"AddressLine":[
-							   "Rua da venda de cima"
+								"Rua antonio candido pinto"
 							],
 							"City":"Braga",
 							"StateProvinceCode":"",
-							"PostalCode":"4705-885",
+							"PostalCode":"4715-400",
 							"CountryCode":"PT"
-						 }
-					  },
-					  "ShipFrom":{
-						 "Name":"Diogo Vieira",
-						 "Address":{
+						}
+					},
+					"ShipFrom":{
+						"Name":"Diogo Vieira",
+						"Address":{
 							"AddressLine":[
-							   "Rua Antonio candido pinto"
+								"Rua Dr. António José Sousa Pereira 261 "
 							],
-							"City":"Braga",
+							"City":" Vila do Conde",
 							"StateProvinceCode":"",
-							"PostalCode":"4700-234",
+							"PostalCode":"4480-807",
 							"CountryCode":"PT"
-						 }
-					  },
-					  "Service":{
-						 "Code":"11",
-						 "Description":"Service Code Description"
-					  },
-					  "Package":{
-						 "PackagingType":{
+						}
+					},
+					"Service":{
+						"Code":"11",
+						"Description":"Service Code Description"
+					},
+					"Package":{
+						"PackagingType":{
 							"Code":"00",
 							"Description":""
-						 },
-						 "Dimensions":{
+						},
+						"Dimensions":{
 							"UnitOfMeasurement":{
-							   "Code":"CM",
-							   "Description":"Centimeters"
+								"Code":"CM",
+								"Description":"Centimeters"
 							},
 							"Length":"100",
 							"Width":"50",
 							"Height":"20"
-						 },
-						 "PackageWeight":{
+						},
+						"PackageWeight":{
 							"UnitOfMeasurement":{
-							   "Code":"KGS",
-							   "Description":"Kilograms"
+								"Code":"KGS",
+								"Description":"Kilograms"
 							},
 							"Weight":"65"
-						 }
-					  },
-					  "ShipmentRatingOptions":{
-						 "NegotiatedRatesIndicator":""
-					  }
-				   }
+						}
+					}
 				}
-             }	
-           
-        }
+			}
+		}
+	};
+	request(options, function(error,response,body){
+		if(!error && response.statusCode == 200){
+			console.log(body.RateResponse.RatedShipment.TransportationCharges);
+		}
+	});
 
-        console.log(res.end());
+};
+		  /*request.post(options, (error, body)=>{
+			  obj = JSON.parse(body);
+			  callback(obj);
+		  })
+}*/
+
+
+
+router.post('/', function(request,response){
+		 sendrate();
+		response.redirect('/rate');
 });
 
 
 
-router.get('/', function(req, res){
-    var options = {
-        uri : 'https://wwwcie.ups.com/rest/Rate',
-		method: 'GET'
-    }
-    request(options, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            // Print out the response body
-            console.log(body)
-        }
-    })
+router.get('/', function(request, response,body ){
+	//sendrate();
+	//body.RateResponse.RatedShipment.TransportationCharges;
 });
 
 module.exports = router;
