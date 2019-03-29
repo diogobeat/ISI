@@ -86,7 +86,6 @@ app.use(function(request, response, next){
 // Endereços para paginas Web
 app.use('/', require('./controllers/index.route'));
 app.use('/users', require('./controllers/user.route'));
-app.use('/create', require('./controllers/create.route'));
 app.use('/login', require('./controllers/login.route'));
 app.use('/logout', require('./controllers/logout.route'));
 app.use('/profile', require('./controllers/profile.route'));
