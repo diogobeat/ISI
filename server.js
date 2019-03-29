@@ -60,10 +60,10 @@ app.set('view engine', 'ejs');
 app.set('views','views');
 
 global.connection = mysql.createConnection({  // DataBase Connection
-	host     : 'sql7.freemysqlhosting.net',
-	user     : 'sql7281624',
-	password : 'DTgG1PXgSd',
-	database : 'sql7281624',
+	host     : 'projectmc.ddns.net',
+	user     : 'ISI',
+	password : 'TesteISI2019',
+	database : 'ISI2019',
 }).on('enqueue', function (sequence) {
 	if ('Query' === sequence.constructor.name) {
 		console.log(sequence.sql);
