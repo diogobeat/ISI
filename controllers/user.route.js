@@ -14,7 +14,7 @@ router.get('/', global.secure('admin'), function(request, response) {
 
 
 
-router.get('/create', global.secure('admin'), function(request, response) {
+router.get('/create', function(request, response) {
 	response.set("Content-Type", "text/html");
 	response.render('users-item', {
 		isNew: true,
@@ -23,7 +23,7 @@ router.get('/create', global.secure('admin'), function(request, response) {
 	})
 });
 
-router.post('/create', global.secure('admin'), function(request, response) {
+router.post('/create', function(request, response) {
 	request.checkBody('username', 'Username should have between 5 and 10 chars').isLength({min: 5, max: 10});
 	request.checkBody('password', 'Password should have between 8 and 15 chars').isLength({min: 8, max: 15});
 	var errors = request.validationErrors();	
