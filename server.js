@@ -92,5 +92,6 @@ app.use('/profile', require('./controllers/profile.route'));
 app.use('/public', express.static('public'));
 app.use('/rate', require('./controllers/rate.route'));
 app.use('/admin', require('./controllers/admin.route'));
+
 //app.use('/teste', require('./controllers/rate.route'));
 
