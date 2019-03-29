@@ -29,7 +29,7 @@ router.post('/', function(request, response) {
 				response.redirect('/admin');
 			});		
 		}else{
-			response.render('admin/index', { errors: [
+			response.redirect('/admin', { errors: [
 				{ msg: 'Invalid credentials provided' }
 			]});
 		}
