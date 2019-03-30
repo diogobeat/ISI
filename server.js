@@ -91,6 +91,7 @@ app.use('/register', require('./controllers/register.route'));
 app.use('/logout', require('./controllers/logout.route'));
 app.use('/profile', require('./controllers/profile.route'));
 app.use('/public', express.static('public'));
+app.use('/catalog', require('./controllers/catalog.route'));
 app.use('/rate', require('./controllers/rate.route'));
 app.use('/admin', require('./controllers/admin.route'));
 
