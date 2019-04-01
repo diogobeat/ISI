@@ -13,17 +13,15 @@ router.get('/', function(request,response){
 				jasmin = JSON.parse(body);
 				var soma = 0;
 				for(var i = 0 ; i < jasmin.root.data.length ; i++){
-					soma +=  jasmin.root.data[i].grossValue.amount;
-					//console.log(obj);
-					//var teste = Number(obj);
+					soma = soma + jasmin.root.data[i].grossValue.amount;
+					var val = [soma.length - 1];
 					console.log(soma);
-					//console.log(soma);
-					//console.log(jasmin.root.data[i].grossValue.amount);
 				}
 
 			}
 			response.set("Content-Type", "text/html");
-			response.render('admin/index', {body: jasmin});
+			response.render('admin/index', {body: jasmin,
+				soma : soma});
 		});
 	
 	
