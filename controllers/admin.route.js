@@ -1,24 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const request = require('request');
-
-const headersOpt = {  
-	"content-type": "application/x-www-form-urlencoded",
-};
+const reque = require('request');
 
 
 		 
-router.get('/', function(response){
+router.get('/', function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-
-		request.get('http://localhost:8090/jasminapi/getsalesorder', function(error,response2,body){
-			if(!error && response.statusCode == 200){
-				//body = JSON.parse(body);
-				//console.log(body);
-				response.set("Content-Type", "text/html");
-				response.render('admin/index', {body: body});
+		reque.get('http://localhost:8089/jasminapi/getsalesorder', function(error,response2,body){
+			var jasmin;
+			if(!error && response2.statusCode == 200){
+				jasmin = body;
+				console.log(jasmin);
 			}
+			response.set("Content-Type", "text/html");
+			response.render('admin/index', {body: jasmin});
 		});
 	
 	
