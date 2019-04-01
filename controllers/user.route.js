@@ -46,7 +46,6 @@ router.post('/create', function(request, response) {
 			'nome': request.body.nome,
 			'email': request.body.email,
 			'morada': request.body.morada,
-			'password': request.body.password,
 			'NIF': request.body.NIF,
 			'cod_postal': request.body.cod_postal,
 			'type': "user"
