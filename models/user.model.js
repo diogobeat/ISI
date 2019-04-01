@@ -15,10 +15,10 @@ module.exports = {
 		});
 	},	
 
-	create(hash, data, callback) {
+	create(data, callback) {
 		var sql = "INSERT INTO users (username, password, nome, NIF, morada, cod_postal, email, type) VALUES (?,?,?,?,?,?,?,?)"; 
 		global.connection.query(
-			sql, [data.username, hash, data.nome, data.NIF, data.morada, data.cod_postal, data.email, data.type], function(error, rows, fields) {
+			sql, [data.username, data.password, data.nome, data.NIF, data.morada, data.cod_postal, data.email, data.type], function(error, rows, fields) {
 			if (error) throw error;
 			callback(rows[0]);	
 			console.log(sql);			
@@ -55,17 +55,4 @@ module.exports = {
 			}
 		});
 	}
-/*areValidCredentials(username, password, hash, callback) {
-		var sql = "SELECT password FROM utilizador WHERE username=?";
-		global.connection.query(sql, [username], function(error, rows){
-			if (error) throw error;
-			if (rows.length == 0 ) callback(false);
-			global.bcrypt.compare(rows[0].password, hash, function(err, res) {
-				callback(true); // res === true
-});
-		});
-	}
-*/	
-	
-	
 };
