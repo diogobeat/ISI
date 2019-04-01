@@ -87,7 +87,6 @@ app.use(function(request, response, next){
 app.use('/', require('./controllers/index.route'));
 app.use('/users', require('./controllers/user.route'));
 app.use('/login', require('./controllers/login.route'));
-app.use('/register', require('./controllers/register.route'));
 app.use('/logout', require('./controllers/logout.route'));
 app.use('/profile', require('./controllers/profile.route'));
 app.use('/public', express.static('public'));

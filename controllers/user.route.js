@@ -16,7 +16,7 @@ router.get('/', global.secure('admin'), function(request, response) {
 
 router.get('/create', function(request, response) {
 	response.set("Content-Type", "text/html");
-	response.render('users-item', {
+	response.render('register', {
 		isNew: true,
 		user: {},
 		errors: []
@@ -25,10 +25,16 @@ router.get('/create', function(request, response) {
 
 router.post('/create', function(request, response) {
 	request.checkBody('username', 'Username should have between 5 and 10 chars').isLength({min: 5, max: 10});
+	request.checkBody('nome', 'Name should have between 5 and 15 chars').isLength({min: 5, max: 15});
+	request.checkBody('email', 'Email should have between 8 and 15 chars').isLength({min: 8, max: 15});
+	request.checkBody('morada', 'Your address should have between 5 and 25 chars').isLength({min: 5, max: 25});
 	request.checkBody('password', 'Password should have between 8 and 15 chars').isLength({min: 8, max: 15});
+	request.checkBody('NIF', 'NIF should have 9 chars').isLength({min: 9, max: 9});
+	request.checkBody('cod_postal', 'Your Zip Code should have 9 chars').isLength({min: 9, max: 9});
+	
 	var errors = request.validationErrors();	
 	if (errors) {
-		response.render('users-item', {
+		response.render('register', {
 			isNew: true,
 			user: {},
 			errors: errors
@@ -36,12 +42,16 @@ router.post('/create', function(request, response) {
 	}else{
 		var data = {
 			'username': request.body.username,
-			'name': request.body.name,
+			'nome': request.body.nome,
 			'email': request.body.email,
-			'password': request.body.pwd	
+			'morada': request.body.morada,
+			'password': request.body.password,
+			'NIF': request.body.NIF,
+			'cod_postal': request.body.cod_postal,
+			'type': "user"
 		};
 		model.create(data, function(){
-			response.redirect('/users');
+			response.redirect('login');
 		});
 	}
 });

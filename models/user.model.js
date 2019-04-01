@@ -16,11 +16,12 @@ module.exports = {
 	},	
 
 	create(data, callback) {
-		var sql = "INSERT INTO users (username, name, email, password) VALUES (?,?,?,?)"; 
+		var sql = "INSERT INTO users (username, password, nome, NIF, morada, cod_postal, email, type) VALUES (?,?,?,?,?,?,?,?)"; 
 		global.connection.query(
-			sql, [data.username, data.name, data.email, data.password], function(error, rows, fields) {
+			sql, [data.username, data.password, data.nome, data.NIF, data.morada, data.cod_postal, data.email, data.type], function(error, rows, fields) {
 			if (error) throw error;
-			callback(rows[0]);			
+			callback(rows[0]);	
+			console.log(sql);			
 		});
 	},
 
