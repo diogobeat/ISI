@@ -1,0 +1,80 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/login/login.css">
+  <link rel="stylesheet" href="/public/bootstrap-4.2.1-dist/css/bootstrap.min.css">
+
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+      <div class="col-md-8 col-lg-6">
+        <div class="login d-flex align-items-center py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9 col-lg-8 mx-auto">
+                <h3 class="login-heading mb-4">Welcome!</h3>
+                <% if (errors.length) { %>
+                <div class="alert alert-danger">
+                    <% for (var e of errors) { %>
+                    <li><%= e.msg %></li>
+                    <% }%>
+                </div>
+                <% } %>
+                <form action="/users/create" method="post">
+                  <div class="form-label-group">
+                    <input type="text" id="username" class="form-control" placeholder="Enter username" name="username"
+                      required autofocus>
+                    <label for="username">Username:</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="text" id="name" class="form-control" placeholder="Enter name" name="name"
+                      required autofocus>
+                    <label for="name">Name:</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="password" id="password" class="form-control" placeholder="Enter password"
+                      name="password" required>
+                    <label for="password">Password</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email"
+                      name="email" required>
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="text" id="NIF" class="form-control" placeholder="Enter your NIF"
+                      name="NIF" required>
+                    <label for="NIF">NIF</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="text" id="morada" class="form-control" placeholder="Enter your address"
+                      name="morada" required>
+                    <label for="morada">Address</label>
+                  </div>				  
+                  <div class="form-label-group">
+                    <input type="text" id="cod_postal" class="form-control" placeholder="Enter your zip code"
+                      name="cod_postal" required>
+                    <label for="cod_postal">Zip code</label>
+                  </div>				  
+                  <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                    type="submit">Create</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/public/jquery/jquery-3.3.1.min.js"></script>
+  <script src="/public/bootstrap-4.2.1-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
