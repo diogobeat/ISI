@@ -40,6 +40,7 @@ router.post('/create', function(request, response) {
 			errors: errors
 		});
 	}else{
+		const saltRounds = 10;
 		var data = {
 			'username': request.body.username,
 			'nome': request.body.nome,
@@ -50,9 +51,13 @@ router.post('/create', function(request, response) {
 			'cod_postal': request.body.cod_postal,
 			'type': "user"
 		};
-		model.create(data, function(){
-			response.redirect('login');
+	global.bcrypt.hash(request.body.password, saltRounds).then(function (hash) {
+	console.log("with hash:" + hash);
+	model.create(hash, data, function(){
+			response.redirect('/users');
 		});
+	
+});
 	}
 });
 
