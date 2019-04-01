@@ -6,33 +6,24 @@ const headersOpt = {
 	"content-type": "application/x-www-form-urlencoded",
 };
 
-function getsales(){
-	var options = {
-		url : 'http://localhost:8090/jasminapi/getsalesorder',
-		method: 'GET'
-	}
 
-	request(options, function(error,response,body){
-		if(!error && response.statusCode == 200){
-			console.log(body);
-		}
-	});
-
-};
-		  /*request.post(options, (error, body)=>{
-			  obj = JSON.parse(body);
-			  callback(obj);
-		  })
-}*/
-
-
-
-router.get('/', function(request, response){
+		 
+router.get('/', function(response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-	response.set("Content-Type", "text/html");
-	response.render('admin/index');
-	getsales();
+
+		request.get('http://localhost:8090/jasminapi/getsalesorder', function(error,response,body){
+			if(!error && response.statusCode == 200){
+				//body = JSON.parse(body);
+				//console.log(body);
+				response2.set("Content-Type", "text/html");
+				response2.render('admin/index', {body: body});
+			}
+		});
+		response.set("Content-Type", "text/html");
+		response.render('admin/index', {body: body});
+	
+	
 });
 
 
