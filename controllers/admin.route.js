@@ -4,7 +4,7 @@ const reque = require('request');
 
 
 		 
-router.get('/', function(request,response){
+router.get('/', global.secure("admin"),function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
 		reque.get('http://localhost:8089/jasminapi/getsalesorder', function(error,response2,body){
