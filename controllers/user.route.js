@@ -47,16 +47,13 @@ router.post('/create', function(request, response) {
 			'email': request.body.email,
 			'morada': request.body.morada,
 			'NIF': request.body.NIF,
+			'password': request.body.password,
 			'cod_postal': request.body.cod_postal,
 			'type': "user"
 		};
-	global.bcrypt.hash(request.body.password, saltRounds).then(function (hash) {
-	console.log("with hash:" + hash);
-	model.create(hash, data, function(){
+	model.create(data, function(){
 			response.redirect('/users');
 		});
-	
-});
 	}
 });
 
