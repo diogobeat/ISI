@@ -40,7 +40,6 @@ router.post('/create', function(request, response) {
 			errors: errors
 		});
 	}else{
-		const saltRounds = 10;
 		var data = {
 			'username': request.body.username,
 			'nome': request.body.nome,
