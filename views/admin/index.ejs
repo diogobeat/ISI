@@ -652,15 +652,19 @@
                       <th>Document Date</th>
                       <th>Buyer Customer Party Name</th>
                       <th>Amount</th>
+                      <th>Quantity</th>
+                      <th>Description</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <% for(var i = 0 ; i < body.root.data.length ; i++){ %>
+                    <% for(var i = 0 ; i < body.data.length ; i++){ %>
                     <tr>
                       <td><%= i %></td>
-                      <td><%= body.root.data[i].documentDate %></td>
-                      <td><%= body.root.data[i].buyerCustomerPartyName %></td>
-                      <td><%= body.root.data[i].amount %></td>
+                      <td><%= body.data[i].documentDate %></td>
+                      <td><%= body.data[i].buyerCustomerPartyName %></td>
+                      <td><%= body.data[i].amount %>€</td>
+                      <td><%= body.data[i].quantity %></td>
+                      <td><%= body.data[i].description %></td>
                     </tr>
                     <% } %>
                   </tbody>
