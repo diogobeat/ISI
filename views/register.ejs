@@ -38,11 +38,11 @@
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="text" class="form-control form-control-user" id="username" placeholder="Enter your Username"
-					name="username" required>
+					name="username" pattern="[A-Za-z\s]+$" minlength=5 required>
                   </div>
                   <div class="col-sm-6">
                     <input type="text" class="form-control form-control-user" id="nome" placeholder="Enter your Name"
-					name="nome" required>
+					name="nome" pattern="[A-Za-z\s]+$" minlength=5 requiredrequired>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -62,13 +62,13 @@
                   </div>
                   <div class="col-sm-6">
                     <input type="text" class="form-control form-control-user" id="NIF" placeholder="Enter your NIF"
-                      name="NIF" required>
+                      name="NIF" pattern="^\d{9}$" minlength=9 required required>
                   </div>
                 </div>
 				<div class="form-group row">
                   <div class="col-sm-6">
                     <input type="text" class="form-control form-control-user" id="cod_postal" placeholder="Enter your Zip Code"
-                      name="cod_postal" required>
+                      name="cod_postal" minlength=8 required>
                   </div>
 				</div>
                 </div>
