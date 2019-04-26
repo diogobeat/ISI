@@ -28,13 +28,13 @@ router.get('/create', function(request, response) {
 });
 
 router.post('/create', function(request, response) {
-	//request.checkBody('username', 'Username should have between 5 and 10 chars').isLength({min: 5, max: 10});
-	//request.checkBody('nome', 'Name should have between 5 and 15 chars').isLength({min: 5, max: 15});
-	//request.checkBody('email', 'Email should have between 8 and 15 chars').isLength({min: 8, max: 15});
-	//request.checkBody('morada', 'Your address should have between 5 and 25 chars').isLength({min: 5, max: 25});
-	//request.checkBody('password', 'Password should have between 8 and 15 chars').isLength({min: 8, max: 15});
-	//request.checkBody('NIF', 'NIF should have 9 chars').isLength({min: 9, max: 9});
-	//request.checkBody('cod_postal', 'Your Zip Code should have 9 chars').isLength({min: 8, max: 8});
+	request.checkBody('username', 'Username should have between 5 and 10 chars').isLength({min: 5, max: 10});
+	request.checkBody('nome', 'Name should have between 5 and 15 chars').isLength({min: 5, max: 15});
+	request.checkBody('email', 'Email should have between 8 and 15 chars').isLength({min: 8, max: 15});
+	request.checkBody('morada', 'Your address should have between 5 and 25 chars').isLength({min: 5, max: 25});
+	request.checkBody('password', 'Password should have between 8 and 15 chars').isLength({min: 8, max: 15});
+	request.checkBody('NIF', 'NIF should have 9 chars').isLength({min: 9, max: 9});
+	request.checkBody('cod_postal', 'Your Zip Code should have 9 chars').isLength({min: 8, max: 8});
 	
 	var errors = request.validationErrors();	
 	if (errors) {
