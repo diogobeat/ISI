@@ -1,96 +1,139 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/public/bootstrap-4.2.1-dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/public/index/index.css">
-  <link rel="icon" href="/public/img/favicon.ico">
 
-  <title>Sovifrige</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Creative - Start Bootstrap Theme</title>
+
+  <!-- Font Awesome Icons -->
+  <link href="/public/index/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  <!-- Plugin CSS -->
+  <link href="/public/index/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+  <!-- Theme CSS - Includes Bootstrap -->
+  <link href="/public/index/css/creative.min.css" rel="stylesheet">
+
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="/">Sovifrige</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-left" href="#page-top"> <img style="max-width:150px; margin-top: -8px;"
+        src="public/catalog/images/icons/logo-01.png"></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#footer">Contacts</a>
+            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
           <% if (isAuthenticated) { %>
-          <li class="nav-item">
-            <a class="nav-link" href="/profile">Profile</a>
-          </li>
-          <% if (user.type === 'admin') {%>
-          <li class="nav-item">
-            <a class="nav-link" href="/users">Users</a>
-          </li>
-          <% } %>
-          <% } %>
-          <li class="nav-item">
-            <% if (isAuthenticated) { %>
-            <a class="nav-link" href="/logout">Logout</a>
-            <% } else { %>
-            <a class="nav-link" href="/login">Login</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <% if (user.type === 'admin') {%>
+            <li class="nav-item">
+              <a class="nav-link" href="/users">Users</a>
+            </li>
             <% } %>
-          </li>
+            <% } %>
+            <li class="nav-item">
+              <% if (isAuthenticated) { %>
+              <a class="nav-link" href="/logout">Logout</a>
+              <% } else { %>
+              <a class="nav-link" href="/login">Login</a>
+              <% } %>
+            </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header>
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="/public/img/1080p-Full-HD-Images-For-Desktop-620x349.jpg" alt="First slide">
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-10 align-self-end">
+          <h1 class="text-uppercase text-white font-weight-bold">Your Favorite Source of Free Bootstrap Themes</h1>
+          <hr class="divider my-4">
         </div>
-        <div class="carousel-item">
-          <img class="d-block w-100"
-            src="/public/img/75a4c2d1dc2dbce3342109e8270ff4f3.jpg" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="/public/img/RpB8XBO.jpg" alt="Third slide">
+        <div class="col-lg-8 align-self-baseline">
+          <p class="text-white-75 font-weight-light mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
         </div>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
   </header>
-  <!-- Page Content -->
 
-  <section class="section-regular section-orange">
-    <h3>What are we?</h3>
-    <p>Sovifrige operates in the sector of equipment and services for hotel, restaurant and food distribution.
-      We are a leader and reference company, for the quality of our products, professionalism of our services and
-      confidence
-      that we inspire the market and our customers, proven by the great implementation we have in the market. </p>
-    <p>
-      It is a company with 20 years, aiming at the continuous satisfaction of its customers through the improvement
-      and innovation of its products, being this, its permanent project of progress. Due to these factors it is now an
-      added value in the manufacture of Hotel Equipment.</p>
+  <!-- About Section -->
+  <section class="page-section bg-primary" id="about">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-white mt-0">We've got what you need!</h2>
+          <hr class="divider light my-4">
+          <p class="text-white-50 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <form action="/rate" method="post"  id="contact_form">
-    <button type ="submit">SUBMETER</button>
-  </form>
+  <!-- Services Section -->
+  <section class="page-section" id="services">
+    <div class="container">
+      <h2 class="text-center mt-0">At Your Service</h2>
+      <hr class="divider my-4">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 text-center">
+          <div class="mt-5">
+            <i class="fas fa-4x fa-check-circle text-primary mb-4"></i>
+            <h3 class="h4 mb-2">Quality</h3>
+            <p class="text-muted mb-0">Accuracy in the construction of our equipment</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 text-center">
+          <div class="mt-5">
+            <i class="fas fa-4x fa-handshake text-primary mb-4"></i>
+            <h3 class="h4 mb-2">Trust</h3>
+            <p class="text-muted mb-0">
+              Reliable products for the success of your business</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 text-center">
+          <div class="mt-5">
+            <i class="fas fa-4x fa-star text-primary mb-4"></i>
+            <h3 class="h4 mb-2">Ready to Publish</h3>
+            <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
 
   <section class="section-regular section-white">
     <h2>Location</h2>
@@ -102,68 +145,147 @@
           src="https://www.google.com/maps/embed/v1/place?key=  AIzaSyBJNYACAE6o687rKfT7b3iObXduuWIm0EM 
             &q=Sovifrige+-+Indústria+De+Equipamentos+Hoteleiros,+Lda" allowfullscreen>
       </iframe>
-  </div>            
-</div>  
-</div>
+  </div>        
   </section>
 
-
-  <!-- Footer -->
-  <footer class="page-footer font-small pt-4" id="footer">
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-
-      <!-- Grid row -->
-      <div class="row">
-
-        <!-- Grid column -->
-        <div class="col-md-6 mt-md-0 mt-3">
-
-          <!-- Content -->
-          <h5>Headquarters</h5>
-          <a>Sovifrige - Indústria e Equipamentos Hoteleiros, Lda</a><br>
-          <a>Rua Venda de Cima Lt 12 Sequeira</a><br>
-          <a>4705-885 BRAGA, PORTUGAL</a>
-
+  <!-- Portfolio Section -->
+  <section id="portfolio">
+    <div class="container-fluid p-0">
+      <div class="row no-gutters">
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
+            <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Category
+              </div>
+              <div class="project-name">
+                Project Name
+              </div>
+            </div>
+          </a>
         </div>
-        <!-- Grid column -->
-
-        <!-- 2º column -->
-        <div class="col-md-3">
-          <h5>Contacts</h5>
-          <ul class="list-unstyled">
-            <li>
-              <a>+351 253 605 520</a>
-            </li>
-            <li>
-              <a>+351 253 605 521</a>
-            </li>
-            <li>
-              <a>sovifrige@net.novis.pt</a>
-            </li>
-          </ul>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
+            <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Category
+              </div>
+              <div class="project-name">
+                Project Name
+              </div>
+            </div>
+          </a>
         </div>
-
-        <!-- 3º column -->
-        <div class="col-md-3 mb-md-0 mb-3">
-          <h5>Schedules</h5>
-          <ul class="list-unstyled">
-            <li>
-              <a>Monday to Friday</a>
-            </li>
-            <li>
-              <a>8:30 - 17:30</a>
-            </li>
-          </ul>
-
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
+            <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Category
+              </div>
+              <div class="project-name">
+                Project Name
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
+            <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Category
+              </div>
+              <div class="project-name">
+                Project Name
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
+            <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Category
+              </div>
+              <div class="project-name">
+                Project Name
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
+            <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
+            <div class="portfolio-box-caption p-3">
+              <div class="project-category text-white-50">
+                Category
+              </div>
+              <div class="project-name">
+                Project Name
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
-    </section>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="page-section bg-dark text-white">
+    <div class="container text-center">
+      <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
+      <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">Download Now!</a>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="page-section" id="contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="mt-0">Let's Get In Touch!</h2>
+          <hr class="divider my-4">
+          <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 ml-auto text-center">
+          <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+          <div>+1 (202) 555-0149</div>
+        </div>
+        <div class="col-lg-4 mr-auto text-center">
+          <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+          <!-- Make sure to change the email address in anchor text AND the link below! -->
+          <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-light py-5">
+    <div class="container">
+      <div class="col-md-3 col-sm-3">
+      <img src="/public/img/APCER-9001_2.png" class="img-fluid d-block mx-auto">
+    </div>
+    </div>
   </footer>
 
-  <script src="/public/jquery/jquery-3.3.1.slim.min.js"></script>
-  <script src="/public/bootstrap-4.2.1-dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="/public/index/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/index/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="/public/index/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/public/index/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="/public/index/js/creative.min.js"></script>
+
 </body>
 
 </html>
