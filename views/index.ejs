@@ -21,7 +21,7 @@
   <link href="/public/index/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
   <!-- Theme CSS - Includes Bootstrap -->
-  <link href="/public/index/css/creative.min.css" rel="stylesheet">
+  <link href="/public/index/css/creative.css" rel="stylesheet">
 
 </head>
 
@@ -44,10 +44,13 @@
             <a class="nav-link js-scroll-trigger" href="#services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="#location">Location</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/catalog">Catalog</a>
           </li>
           <% if (isAuthenticated) { %>
             <li class="nav-item">
@@ -116,7 +119,7 @@
         </div>
         <div class="col-lg-4 col-md-6 text-center">
           <div class="mt-5">
-            <i class="fas fa-4x fa-handshake text-primary mb-4"></i>
+            <i class="fas fa-4x fa-handshake text-primary mb-4" style="color:blue"></i>
             <h3 class="h4 mb-2">Trust</h3>
             <p class="text-muted mb-0">
               Reliable products for the success of your business</p>
@@ -134,19 +137,6 @@
     </div>
   </section>
 
-
-  <section class="section-regular section-white">
-    <h2>Location</h2>
-    <div class="col-lg-12">
-      <iframe id="map" 
-          width="1024"
-          height="800"
-          frameborder="0" style="border:0"
-          src="https://www.google.com/maps/embed/v1/place?key=  AIzaSyBJNYACAE6o687rKfT7b3iObXduuWIm0EM 
-            &q=Sovifrige+-+Indústria+De+Equipamentos+Hoteleiros,+Lda" allowfullscreen>
-      </iframe>
-  </div>        
-  </section>
 
   <!-- Portfolio Section -->
   <section id="portfolio">
@@ -234,13 +224,14 @@
     </div>
   </section>
 
-  <!-- Call to Action Section -->
+  <!-- Call to Action Section 
   <section class="page-section bg-dark text-white">
     <div class="container text-center">
       <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
       <a class="btn btn-light btn-xl" href="https://startbootstrap.com/themes/creative/">Download Now!</a>
     </div>
   </section>
+  -->
 
   <!-- Contact Section -->
   <section class="page-section" id="contact">
@@ -255,16 +246,29 @@
       <div class="row">
         <div class="col-lg-4 ml-auto text-center">
           <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-          <div>+1 (202) 555-0149</div>
+          <div>+351 253 605 520</div>
+          <div>+351 253 605 521</div>
         </div>
         <div class="col-lg-4 mr-auto text-center">
           <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
           <!-- Make sure to change the email address in anchor text AND the link below! -->
-          <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
+          <a class="d-block" href="mailto:sovifrige@net.novis.pt">sovifrige@net.novis.pt</a>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="page-section" id="location">
+      <h2 class="text-center mt-0">Location</h2>
+      <div class="col-lg-12">
+        <p align="center">
+        <iframe id="map" width="700" height="400" frameborder="0" style="border:0" 
+            src="https://www.google.com/maps/embed/v1/place?key=  AIzaSyBJNYACAE6o687rKfT7b3iObXduuWIm0EM 
+              &q=Sovifrige+-+Indústria+De+Equipamentos+Hoteleiros,+Lda" allowfullscreen>
+        </iframe>
+      </p>
+    </div>        
+    </section>
 
   <!-- Footer -->
   <footer class="bg-light py-5">
