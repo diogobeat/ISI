@@ -4,7 +4,7 @@ const reque = require('request');
 
 
 		 
-router.get('/', global.secure("admin"),function(request,response){
+router.get('/',function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
 		reque.get('http://localhost:8089/jasminapi/getOrder', function(error,response2,body){
@@ -35,5 +35,10 @@ router.get('/', global.secure("admin"),function(request,response){
 	
 	
 });
+
+router.post("/processOrder", function(request, response){
+	console.log(require('./public/jquery/teste'))
+});
+
 
 module.exports = router;

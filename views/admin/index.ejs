@@ -12,6 +12,8 @@
   <title>SB Admin 2 - Dashboard</title>
 
   <!-- Custom fonts for this template-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <link href="/public/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -639,13 +641,16 @@
             </div>
           </div>
 
+     
+<form action="/admin/processOrder" method="POST">
+  <div id="select_div"><a href="#" id="select_link">Test</a></div>  
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="tableMain" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -654,6 +659,8 @@
                       <th>Amount</th>
                       <th>Quantity</th>
                       <th>Description</th>
+                      <th>accountingParty</th>
+                      <th>Process Order</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -665,14 +672,88 @@
                       <td><%= body.data[i].amount %>€</td>
                       <td><%= body.data[i].quantity %></td>
                       <td><%= body.data[i].description %></td>
+                      <td><%= body.data[i].accountingParty %></td>
+                      <td><button id="tableMain tbody tr" type="button">Order</button></td>
                     </tr>
                     <% } %>
                   </tbody>
                 </table>
+                
               </div>
             </div>
           </div>
         </div>
+        <button id="post" type="button">Order</button>
+      </form>
+
+      <script>		
+      var teste1 = "";
+          $(function () {	
+      $("#tableMain tbody tr").click(function () {
+                  var tableData = $(this).children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+                  
+                  var td=tableData[0] + tableData[1] +  tableData[2] + tableData[3] +  tableData[4];
+                  
+                  var teste = {
+	"buyerCustomerParty": tableData[6],
+	"documentDate": "2019-06-06T00:00:00",
+		"documentLines": [
+	{
+    "salesItem": "ARECA",
+		"description": tableData[5],
+		"quantity": parseFloat(tableData[4]),
+			"unitPrice": {
+          "amount": parseFloat(tableData[3]),
+          "symbol": "€"
+        }
+	}
+	]
+};
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8089/jasminapi/postOrder',
+      data: JSON.stringify(teste),
+      
+
+    })
+      });
+    });	
+    
+    
+ 
+  </script>
+
+
+  <!-- <script>
+  $('#post').on('click',function(){
+    var teste = {
+	"buyerCustomerParty": "JAMARAL",
+	"documentDate": "2019-05-21T00:00:00",
+		"documentLines": [
+	{
+		"salesItem": "ARECA",
+		"description":"Palmeira areca em vaso grês",
+		"quantity": 1,
+			"unitPrice": {
+          "amount": 200,
+          "symbol": "€"
+        }
+	}
+	]
+};
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8089/jasminapi/postOrder',
+      data: JSON.stringify(teste),
+sucess: alert("Sucesso")
+
+    })
+  });
+  </script>
+-->
+
         <!-- /.container-fluid -->
 
       </div>
