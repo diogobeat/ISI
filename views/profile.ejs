@@ -122,7 +122,6 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>ID</th>
                           <th>Document Date</th>
                           <th>Buyer Customer Party Name</th>
                           <th>Amount</th>
@@ -131,7 +130,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                        
+                        <td><%= body.documentDate %></td>
+                        <td><%= body.buyerCustomerPartyName %></td>
+                        <td><%= body.description %></td>
+                        <td><%= body.amount %></td>
+                        <td><%= body.quantity %></td>
                       </tbody>
                     </table>
                   </div>

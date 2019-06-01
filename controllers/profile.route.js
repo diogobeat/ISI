@@ -23,13 +23,17 @@ function getCliente(){
 
 
 router.get('/', global.secure(), function(request, response) {
-	reque.get("http://localhost:8089/jasminapi/getOrder" + request.user, function(error, response2, body){
+	reque.get("http://localhost:8089/jasminapi/getOrder/" + request.user.username, function(error, response2, body){
+		var cliente = JSON.parse(body);
 			console.log(JSON.parse(body));
-	});
-	response.set("Content-Type", "text/html");
+			response.set("Content-Type", "text/html");
 	response.render('profile', {
-		user: request.user, errors: []
-	})		
+		body: cliente,
+		user: request.user,
+		 errors: []
+	})	
+	});
+		
 });
 
 router.post('/', global.secure(), function(request, response) {
