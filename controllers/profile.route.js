@@ -23,7 +23,7 @@ function getCliente(){
 
 
 router.get('/', global.secure(), function(request, response) {
-	reque.get("http://localhost:8089/jasminapi/getOrder", function(error, response2, body){
+	reque.get("http://localhost:8089/jasminapi/getOrder" + request.user, function(error, response2, body){
 			console.log(JSON.parse(body));
 	});
 	response.set("Content-Type", "text/html");

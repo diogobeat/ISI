@@ -660,6 +660,7 @@
                       <th>Quantity</th>
                       <th>Description</th>
                       <th>accountingParty</th>
+                      <th>salesItem</th>
                       <th>Process Order</th>
                     </tr>
                   </thead>
@@ -673,6 +674,7 @@
                       <td><%= body.data[i].quantity %></td>
                       <td><%= body.data[i].description %></td>
                       <td><%= body.data[i].accountingParty %></td>
+                      <td><%= body.data[i].salesItem %></td>
                       <td><button id="tableMain tbody tr" type="button">Order</button></td>
                     </tr>
                     <% } %>
@@ -687,21 +689,18 @@
       </form>
 
       <script>		
-      var teste1 = "";
           $(function () {	
       $("#tableMain tbody tr").click(function () {
                   var tableData = $(this).children("td").map(function() {
                     return $(this).text();
                   }).get();
                   
-                  var td=tableData[0] + tableData[1] +  tableData[2] + tableData[3] +  tableData[4];
-                  
                   var teste = {
 	"buyerCustomerParty": tableData[6],
 	"documentDate": "2019-06-06T00:00:00",
 		"documentLines": [
 	{
-    "salesItem": "ARECA",
+    "salesItem": tableData[7],
 		"description": tableData[5],
 		"quantity": parseFloat(tableData[4]),
 			"unitPrice": {
@@ -713,7 +712,9 @@
 };
     $.ajax({
       type: 'POST',
-      url: 'http://localhost:8089/jasminapi/postOrder',
+      url: 'http://localhost:8093/jasminapi/postBill',
+      dataType: "json",
+      contenttype: "application/json",
       data: JSON.stringify(teste),
       
 
