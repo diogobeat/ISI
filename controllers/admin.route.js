@@ -60,23 +60,19 @@ router.post('/fornecedorcomprarParafusos', function(request, response) {
 				headers: headersOpt,
 				json: {
 					"No": request.body.numeroOrder,
-					"Sell_to_Customer_No": "C00020",
+					"Sell_to_Customer_No": "C00010",
 					"Sell_to_Customer_Name": "ISI 2019",
 					"Sell_to_Address": "Rua da Universidade do Minho",
-					"Sell_to_Post_Code": "4800-068",
+					"Sell_to_Post_Code": "4805-449",
 					"Sell_to_City": "Guimaraes",
 					"Sell_to_Contact_No": "CT000258",
-					"Sell_to_Contact": "Sr. Rui Vieria",
-					"Document_Date": "2019-05-24",
-					"Posting_Date": "2019-05-24",
-					"Order_Date": "2019-05-24",
-					"Due_Date": "2019-05-31",
+					"Sell_to_Contact": "Sr. Rui Vieira",
+					"Document_Date": "2019-01-24",
+					"Due_Date": "2019-01-31",
 					"Type": "Item",
 					"No_Item": "70061",
-					"Quantity": "1000",
-					"Unit_of_Measure_Code": "PCS",
-					"Unit_of_Measure": "1",
-					"Unit_Price": "1"					
+					"Quantity": "100",
+					"Unit_Price": "2"					
 			}
 						}
 			
@@ -106,23 +102,19 @@ router.post('/fornecedorcomprarMadeira', function(request, response) {
 				headers: headersOpt,
 				json: {
 					"No": request.body.numeroOrder,
-					"Sell_to_Customer_No": "C00020",
+					"Sell_to_Customer_No": "C00010",
 					"Sell_to_Customer_Name": "ISI 2019",
 					"Sell_to_Address": "Rua da Universidade do Minho",
-					"Sell_to_Post_Code": "4800-068",
+					"Sell_to_Post_Code": "4805-449",
 					"Sell_to_City": "Guimaraes",
 					"Sell_to_Contact_No": "CT000258",
-					"Sell_to_Contact": "Sr. Rui Vieria",
-					"Document_Date": "2019-05-24",
-					"Posting_Date": "2019-05-24",
-					"Order_Date": "2019-05-24",
-					"Due_Date": "2019-05-31",
+					"Sell_to_Contact": "Sr. Rui Vieira",
+					"Document_Date": "2019-01-24",
+					"Due_Date": "2019-01-31",
 					"Type": "Item",
-					"No_Item": "70062",
-					"Quantity": "1000",
-					"Unit_of_Measure_Code": "PCS",
-					"Unit_of_Measure": "1",
-					"Unit_Price": "1"					
+					"No_Item": "70063",
+					"Quantity": "100",
+					"Unit_Price": "40"					
 			}
 						}
 			
