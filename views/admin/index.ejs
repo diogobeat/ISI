@@ -20,7 +20,7 @@
     rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="/public/admin/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/public/admin/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -686,7 +686,6 @@
             </div>
           </div>
         </div>
-        <button id="post" type="button">Order</button>
       </form>
 
       <script>		
@@ -694,8 +693,7 @@
       $("#tableMain tbody tr").click(function () {
                   var tableData = $(this).children("td").map(function() {
                     return $(this).text();
-                  }).get();
-                  
+                  }).get();  
                   var teste = {
 	"buyerCustomerParty": tableData[6],
 	"documentDate": "2019-06-06T00:00:00",
@@ -716,12 +714,19 @@
       url: 'http://localhost:8093/jasminapi/postBill',
       dataType: "json",
       contenttype: "application/json",
-      data: JSON.stringify(teste),
-      
-
-    })
+      data:  JSON.stringify(teste),
+      error: function(xhr, textStatus, error){
+    alert("Sucesso");
+  
+},
+      success: function(data){
+     alert("erro");
+  }
+  
+   
       });
     });	
+          });
     
     
  

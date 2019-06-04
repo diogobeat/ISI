@@ -8,24 +8,10 @@ const headersOpt = {
 	"content-type": "application/json",
 };
 
-function getCliente(){
-	
-}
-//funcion teste(){
-	//for (var i = 0, l = arrayJasmin.length; i < l; i++){
-	  //if (arrayJamin[i]['buyerCustomerPartyName:'] === Joaquim da Silva Araújo){
-		//return arrayJamin[i]['amount'];
-	  //}
-	  //return false;
-//	}
-	//}
-
-
 
 router.get('/', global.secure(), function(request, response) {
 	reque.get("http://localhost:8089/jasminapi/getOrder/" + request.user.username, function(error, response2, body){
 		var cliente = JSON.parse(body);
-			console.log(JSON.parse(body));
 			response.set("Content-Type", "text/html");
 	response.render('profile', {
 		body: cliente,
