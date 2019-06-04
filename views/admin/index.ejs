@@ -423,6 +423,7 @@
           $(function () {	
       $("#tableMain tbody tr").click(function () {
                   var tableData = $(this).children("td").map(function() {
+                    $(this).closest('tr').remove();
                     return $(this).text();
                   }).get();  
                   var teste = {
