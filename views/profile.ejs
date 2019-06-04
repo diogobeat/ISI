@@ -39,7 +39,6 @@
 <div class="container bootstrap snippet">
     <div class="row">
   		<div class="col-sm-10"><h1>User name</h1></div>
-    	<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
     </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
@@ -48,7 +47,6 @@
       <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload</h6>
-        <input type="file" class="text-center center-block file-upload">
       </div></hr><br>
 
                
@@ -100,14 +98,6 @@
                               <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
                           </div>
                       </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                              	<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               	<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                            </div>
-                      </div>
-              	</form>
               
               <hr>
               
@@ -141,7 +131,7 @@
                         <td><%= body.data[i].quantity %></td>
                         <td><%= body.data[i].amount %> €</td>
                         <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-                        <td><script>paypal.Buttons().render('body');</script></td>
+                        <td><script>paypal.Buttons().render('body');</script> </td>
                       </tr>
                       <% } %>
                       </tbody>

@@ -4,6 +4,8 @@ const reque = require('request');
 const headersOpt = {  
 	"content-type": "application/json",
 };
+const quantidade = 0;
+const custo = quantidade*1000
 
 router.get('/', function(request, response){
 	//console.log(request.user);
@@ -21,19 +23,11 @@ router.get('/', function(request, response){
 
 
 
-router.get('/carrinho', function(request, response) {
-	response.set("Content-Type", "text/html");
-	response.render('carrinho', {
-		errors: []
-	})
-	
-});
-
 
 
 router.get('/encomendar', function(request, response) {
 	response.set("Content-Type", "text/html");
-	response.render('carrinho', {
+	response.render('catalog', {
 		errors: []
 	})
 });
@@ -76,7 +70,7 @@ router.post('/encomendar', function(request, response) {
 
 router.get('/buy', function(request, response) {
 	response.set("Content-Type", "text/html");
-	response.render('carrinho', {
+	response.render('catalog', {
 		errors: []
 	})
 });
@@ -121,7 +115,7 @@ router.post('/buy', function(request, response) {
 
 router.get('/pagar', function(request, response) {
 		response.set("Content-Type", "text/html");
-		response.render('carrinho', {
+		response.render('catalog', {
 			errors: []
 		})
 	});
@@ -140,10 +134,10 @@ router.post('/pagar', function(request, response) {
         "date": "2019-04-09T17:31:05+0100",
         "document_set_id": "123228",
         "supplier_id": "533438",
-        "net_value": "1000",
+        "net_value": custo,
         "associated_documents": [{
         	"associated_id": "0",
-        	"value": "1000"
+        	"value": custo
         }]
 }
 	}
@@ -153,7 +147,7 @@ router.post('/pagar', function(request, response) {
 		}
 	});			
 			
-	response.redirect('/');
+	response.redirect('/catalog');
 
 });
 
