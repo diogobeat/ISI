@@ -140,8 +140,7 @@
                         <td><%= body.data[i].description %></td>
                         <td><%= body.data[i].quantity %></td>
                         <td><%= body.data[i].amount %> €</td>
-                        <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-                        <td><script>paypal.Buttons().render('body');</script></td>
+                        <td><button id="pay" type="button">Pagar</button></td>
                       </tr>
                       <% } %>
                       </tbody>
@@ -149,52 +148,61 @@
                     </table>
                   </div>
 
-                 
+                  <script>		
+
+          const paypal = require("paypal-rest-sdk");
+                    $(function () {	
+                $("#pay").click(function () {
+                            var tableData = $(this).children("td").map(function() {
+                              $(this).parent("tr:first").remove();
+                              return $(this).text();
+                            }).get();  
+                            const create_payment_json = {
+	              "intent": "sale",
+	            "payer": {
+		        "payment_method": "paypal"
+	  },
+	  "redirect_urls": {
+		  "return_url": "http://localhost:3000/profile/success",
+		  "cancel_url": "http://localhost:3000/cancel"
+	  },
+	  "transactions": [{
+		  "item_list": {
+			  "items": [{
+				  "name": "Red Sox Hat",
+				  "sku": "001",
+				  "price": "25.00",
+				  "currency": "USD",
+				  "quantity": 1
+			  }]
+		  },
+		  "amount": {
+			  "currency": "USD",
+			  "total": "25.00"
+		  },
+		  "description": "Hat for the best team ever"
+	  }]
+  };
+  
+  paypal.payment.create(create_payment_json, function (error, payment) {
+	if (error) {
+		throw error;
+	} else {
+		for(let i = 0;i < payment.links.length;i++){
+		  if(payment.links[i].rel === 'approval_url'){
+			res.redirect(payment.links[i].href);
+		  }
+		}
+	}
+  });
+        
+              });	
+                    });
+              
+              
+           
+            </script>
             
-
-                  <div id="paypal-button-container"></div>
-                  <script>
-                  paypal.Button.render({
-
-                      env: 'sandbox',
-
-                      client: {
-                        sanbox: 'AR61iSCJeJgMfwuuuuVMfCVnce5D1PgYgKIGRapFnQNWMj6DYcOhpkoCiPWITPVYFHgkdX6kjdwgtUkV',
-                        production: 'EG8JakGKuS7_EBPZ4YYQpsUwvkl4f3JBCncwk_lkDOEfXl65H2i0Juo1WqNTIHGHrucYWSnVVgzRQxTW'
-                      },
-
-                      commit: true,
-
-                      payment: function(data, actions){
-
-                        return actions.payment.create({
-                          payment: (
-                            transactions:[ 
-                            {
-                                amount: (total: '1', currency: 'EUR')
-                              }
-                              ]
-                          )
-                        });
-                      },
-
-
-                      onAuthorize: function(data, actions){
-
-                        return actions.payment.execute().then(function(){
-                          window.alert("payment Complete");
-                        });
-
-                      }
-
-                  
-                  },
-                  '#paypal-button-container');
-
-
-          
-                  
-                  </script>
             
                   
              </hr>

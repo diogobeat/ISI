@@ -423,7 +423,7 @@
           $(function () {	
       $("#tableMain tbody tr").click(function () {
                   var tableData = $(this).children("td").map(function() {
-                    $(this).closest('tr').remove();
+                    $(this).parent("tr:first").remove();
                     return $(this).text();
                   }).get();  
                   var teste = {
@@ -448,7 +448,7 @@
       contenttype: "application/json",
       data:  JSON.stringify(teste),
       error: function(xhr, textStatus, error){
-    alert("Sucesso");
+    alert("Fatura emitida com sucesso. Sera enviada por email ao cliente!");
   
 },
       success: function(data){
