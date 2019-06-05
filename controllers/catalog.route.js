@@ -11,7 +11,7 @@ const custo = quantidade*1000
 router.get('/', function(request, response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-	reque.get('http://localhost:8095/jasminapi/getItems', function(error,response2,body){
+	reque.get('http://localhost:8092/jasminapi/getItems', function(error,response2,body){
 		var jasmin = JSON.parse(body);
 		for ( var i = 0 ; i < jasmin.root.data.length; i ++){
 			
@@ -25,7 +25,6 @@ router.get('/', function(request, response){
 
 
 
-
 router.get('/encomendar', function(request, response) {
 	response.set("Content-Type", "text/html");
 	response.render('catalog', {
@@ -35,13 +34,129 @@ router.get('/encomendar', function(request, response) {
 	
 	
 router.post('/encomendar', function(request, response) {
+
+	var upsJson = {
+		url : 'https://wwwcie.ups.com/rest/Rate',
+		method: 'POST',
+		dataType : 'json',
+		headers: headersOpt,
+		json: {
+			"UPSSecurity":{
+				"UsernameToken":{
+					"Username":"DiogoVieira96",
+					"Password":"TesteIsi2019"
+				},
+				"ServiceAccessToken":{
+					"AccessLicenseNumber":"4D5C1DD8D0D5849D"
+				}
+			},
+			"RateRequest":{
+				"Request":{
+					"RequestOption":"Shop",
+					"TransactionReference":{
+						"CustomerContext":"Your Customer Context"
+					}
+				},
+				"Shipment":{
+					"Shipper":{
+						"Name":"Diogo Vieira",
+						"ShipperNumber":"82Y418",
+						"Address":{
+							"AddressLine":[
+								"Rua antonio candido pinto n51 6dt fr"
+							],
+							"City":"Braga",
+							"StateProvinceCode":"",
+							"PostalCode":"4715-400",
+							"CountryCode":"PT"
+						}
+					},
+					"ShipTo":{
+						"Name":"Manuel Cunha",
+						"Address":{
+							"AddressLine":[
+								"Rua antonio candido pinto"
+							],
+							"City":"Braga",
+							"StateProvinceCode":"",
+							"PostalCode":"4715-400",
+							"CountryCode":"PT"
+						}
+					},
+					"ShipFrom":{
+						"Name":"Diogo Vieira",
+						"Address":{
+							"AddressLine":[
+								"Rua Dr. António José Sousa Pereira 261 "
+							],
+							"City":" Vila do Conde",
+							"StateProvinceCode":"",
+							"PostalCode":"4480-807",
+							"CountryCode":"PT"
+						}
+					},
+					"Service":{
+						"Code":"11",
+						"Description":"Service Code Description"
+					},
+					"Package":{
+						"PackagingType":{
+							"Code":"00",
+							"Description":""
+						},
+						"Dimensions":{
+							"UnitOfMeasurement":{
+								"Code":"CM",
+								"Description":"Centimeters"
+							},
+							"Length":"100",
+							"Width":"50",
+							"Height":"20"
+						},
+						"PackageWeight":{
+							"UnitOfMeasurement":{
+								"Code":"KGS",
+								"Description":"Kilograms"
+							},
+							"Weight":"65"
+						}
+					}
+				}
+			}
+		}
+	};
+
 	
 
-			var options = {
+	var jasminJSON = {
+
+				url : "http://localhost:8096/jasminapi/postOrder",
+				method: 'POST',
+				dataType : 'json',
+			"documentType": "ECL",
+			"serie" : "2019",
+			"buyerCustomerParty": "JAMARAL",
+			"documentDate": "2019-06-16T00:00:00",
+			"paymentMethod": "Num",
+			"deliveryTerm": "TRANSP",
+			"company": "Default",
+			"documentLines": [
+			  {
+				"salesItem": "ARECA",
+				"quantity": 1,
+				"unit" :"UN",
+				"itemTaxSchema" :"IVA-TR",
+				"unitPrice": {
+				  "amount": 125
+				}
+			  }
+			]
+		   }
+	
+			var moloniJSON = {
 				url : 'http://localhost:8089/moloni/createSupplierOrder',
 				method: 'POST',
 				dataType : 'json',
-				headers: headersOpt,
 				json: {
 					"company_id": "72407",
         "date": "2019-04-09T17:31:05+0100",
@@ -57,11 +172,7 @@ router.post('/encomendar', function(request, response) {
             }]
 			}
 						}
-			
-			reque.post(options, function(error, response){
-				if(!error && response.statusCode == 200){
-					}
-				});			
+					
 
 				const create_payment_json = {
 					"intent": "sale",
@@ -100,6 +211,18 @@ router.post('/encomendar', function(request, response) {
 						}
 					  }
 				  }
+				});
+
+				reque.post(upsJson, function(error,response,body){
+					if(!error && response.statusCode == 200){
+						console.log("UPS: " + JSON.stringify(response));
+						reque.post(jasminJSON, function(error, response){
+							console.log("Jasmin: " + JSON.stringify(response));
+						});
+						reque.post(moloniJSON, function(error, response){
+							console.log("moloni: " + JSON.stringify(response));
+						})
+					}
 				});
 
 });
