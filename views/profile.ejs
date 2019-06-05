@@ -139,53 +139,10 @@
                     </table>
                   </div>
 
-                 
-            
+                 <form action="/profile/pay" method="POST">
+                  <input type="submit" class="btn-cta" value="COMPRAR">
+                </form>
 
-                  <div id="paypal-button-container"></div>
-                  <script>
-                  paypal.Button.render({
-
-                      env: 'sandbox',
-
-                      client: {
-                        sanbox: 'AR61iSCJeJgMfwuuuuVMfCVnce5D1PgYgKIGRapFnQNWMj6DYcOhpkoCiPWITPVYFHgkdX6kjdwgtUkV',
-                        production: 'EG8JakGKuS7_EBPZ4YYQpsUwvkl4f3JBCncwk_lkDOEfXl65H2i0Juo1WqNTIHGHrucYWSnVVgzRQxTW'
-                      },
-
-                      commit: true,
-
-                      payment: function(data, actions){
-
-                        return actions.payment.create({
-                          payment: (
-                            transactions:[ 
-                            {
-                                amount: (total: '1', currency: 'EUR')
-                              }
-                              ]
-                          )
-                        });
-                      },
-
-
-                      onAuthorize: function(data, actions){
-
-                        return actions.payment.execute().then(function(){
-                          window.alert("payment Complete");
-                        });
-
-                      }
-
-                  
-                  },
-                  '#paypal-button-container');
-
-
-          
-                  
-                  </script>
-            
                   
              </hr>
              </div><!--/tab-pane-->
