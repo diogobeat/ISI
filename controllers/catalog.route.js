@@ -11,7 +11,7 @@ const custo = quantidade*1000
 router.get('/', function(request, response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-	reque.get('http://localhost:8092/jasminapi/getItems', function(error,response2,body){
+	reque.get('http://localhost:8095/jasminapi/getItems', function(error,response2,body){
 		var jasmin = JSON.parse(body);
 		for ( var i = 0 ; i < jasmin.root.data.length; i ++){
 			
@@ -126,14 +126,14 @@ router.post('/encomendar', function(request, response) {
 		}
 	};
 
-	
+
 
 	var jasminJSON = {
 
 				url : "http://localhost:8096/jasminapi/postOrder",
 				method: 'POST',
 				dataType : 'json',
-			"documentType": "ECL",
+		json : {	"documentType": "ECL",
 			"serie" : "2019",
 			"buyerCustomerParty": "JAMARAL",
 			"documentDate": "2019-06-16T00:00:00",
@@ -151,7 +151,8 @@ router.post('/encomendar', function(request, response) {
 				}
 			  }
 			]
-		   }
+			 }
+			}
 	
 			var moloniJSON = {
 				url : 'http://localhost:8089/moloni/createSupplierOrder',
