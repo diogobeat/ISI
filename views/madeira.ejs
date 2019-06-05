@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Fornecedor Parafusos</title>
+    <title>Fornecedores Madeira</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -23,7 +23,7 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Preço</div>
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Preço Fornecedor Bitrix24</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800"><%= body.price %> €</div>
               </div>
               <div class="col-auto">
@@ -41,7 +41,7 @@
          <div class="card-body">
            <div class="row no-gutters align-items-center">
              <div class="col mr-2">
-               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Preço</div>
+               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Preço Fornecedor Dynamics NAV </div>
                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= body1.unitPrice %> €</div>
              </div>
              <div class="col-auto">
@@ -54,17 +54,16 @@
    </div>
   </div>
 
-  <form  action="/admin/fornecedorcomprarParafusos" method="POST">
+  <form  action="/admin/fornecedorcomprarMadeira" method="POST">
         
     <div class="col-sm-6 mb-3 mb-sm-0">
         <input type="text" class="form-control form-control-user" id="numeroOrder" placeholder="Insira um número de Encomenda"
         name="numeroOrder" required>
       </div>
     <div class="text-center">
-        <button class="small" type="submit">Comprar Parafusos!</button>           
+        <button class="small" type="submit">Comprar Madeira!</button>           
     </div>                      
 
    </form>
-
 </body>
 </html>

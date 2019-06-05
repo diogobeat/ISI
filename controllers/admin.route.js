@@ -64,6 +64,25 @@ router.get('/fornecedorcomprarParafusos',function(request,response){
 
 
 
+router.get('/fornecedorcomprarMadeira',function(request,response){
+
+	reque.get('http://localhost:8091/bitrix/getMadeira', function(error,response2,body){
+		reque.get('http://localhost:8092/dynamics/read?no=70063', function(error,response2,body1){
+
+		var bitrix = JSON.parse(body);
+		var dynamics = JSON.parse(body1);
+
+		response.set("Content-Type", "text/html");
+		response.render('madeira', {body: bitrix, body1: dynamics});
+	});
+});
+
+
+});
+
+
+
+
 
 
 router.get('/fornecedorcomprarParafusos', function(request, response) {
