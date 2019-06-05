@@ -23,8 +23,9 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
+                  <% if (parseFloat(body.price) < parseFloat(body1.unitPrice)) {%> 
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Preço Bitrix24</div>
-                <% if parseFloat(body.price) > parseFloat(body1.unitPrice) {%> 
+                
                 <div class="h5 mb-0 font-weight-bold text-gray-800"><%= body.price %> €</div>
               </div>
               <div class="col-auto">
