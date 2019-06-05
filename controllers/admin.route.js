@@ -54,23 +54,15 @@ router.get('/fornecedorcomprarParafusos',function(request,response){
 			var year = currentDate.getFullYear().toString();
 			var month = (currentDate.getMonth() + 1).toString();
 */
-			var bitrix = XMLDocument.parse(body);
-			var precoParafusos = bitrix.data.price;
-
-	/*		for(var i = 0 ; i < bitrix.data.length ; i++){
-				var saleM = bitrix.data[i].documentDate.substring(5, 7).replace(/^0+/, '');
-				var saleA = bitrix.data[i].documentDate.substring(0, 4);
-				//console.log(saleA  == year);
-				if(saleA  === year){
-					earningsAnnual +=  jasmin.data[i].amount;
-
-					if(saleM === month){
-						earningsMonthly += jasmin.data[i].amount;
-					}
-				}		
+			var bitrix = JSON.parse(body);
+			var precoParafusos = bitrix.body;
+/*
+			for(var i = 0 ; i < bitrix.data.length ; i++){
+				var precoParafusos = bitrix.data[i].(0, 
+					
 			} */
 			response.set("Content-Type", "text/html");
-			response.render('admin/parafusos', {body: bitrix});
+			response.render('parafusos', {body: bitrix});
 		});
 	
 	
