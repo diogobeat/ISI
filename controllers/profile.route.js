@@ -3,7 +3,12 @@ const router = express.Router();
 const usersModel = require('../models/user.model');
 const reque = require('request');
 const paypal = require("paypal-rest-sdk");
+const paypalConfig = require("../config/paypal");
 
+
+const headersOpt = {  
+	"content-type": "application/json",
+};
 
 paypal.configure({
     "mode": "sandbox",
@@ -25,8 +30,7 @@ router.get('/', global.secure(), function(request, response) {
 		
 });
 
-router.post('/pay', function(req, res) {
-
+router.post('/pay', (req, res) => {
 	const create_payment_json = {
 	  "intent": "sale",
 	  "payer": {
