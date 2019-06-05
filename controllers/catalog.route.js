@@ -10,7 +10,7 @@ const custo = quantidade*1000
 router.get('/', function(request, response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-	reque.get('http://localhost:8092/jasminapi/getItems', function(error,response2,body){
+	reque.get('http://localhost:8095/jasminapi/getItems', function(error,response2,body){
 		var jasmin = JSON.parse(body);
 		for ( var i = 0 ; i < jasmin.root.data.length; i ++){
 			
@@ -37,7 +37,7 @@ router.post('/encomendar', function(request, response) {
 	
 
 			var options = {
-				url : 'http://localhost:8091/moloni/createSupplierOrder',
+				url : 'http://localhost:8089/moloni/createSupplierOrder',
 				method: 'POST',
 				dataType : 'json',
 				headers: headersOpt,
@@ -80,7 +80,7 @@ router.post('/buy', function(request, response) {
 	
 
 			var options = {
-				url : 'http://localhost:8091/moloni/createSupplierInvoice',
+				url : 'http://localhost:8089/moloni/createSupplierInvoice',
 				method: 'POST',
 				dataType : 'json',
 				headers: headersOpt,
@@ -125,7 +125,7 @@ router.post('/pagar', function(request, response) {
 				
 			
 	var options = {
-	url : 'http://localhost:8091/moloni/createSupplierReceipt',
+	url : 'http://localhost:8089/moloni/createSupplierReceipt',
 	method: 'POST',
 	dataType : 'json',
 	headers: headersOpt,

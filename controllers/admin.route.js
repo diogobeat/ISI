@@ -9,7 +9,7 @@ const headersOpt = {
 router.get('/',function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-		reque.get('http://localhost:8089/jasminapi/getOrder', function(error,response2,body){
+		reque.get('http://localhost:8096/jasminapi/getOrder', function(error,response2,body){
 			var earningsMonthly = 0;
 			var earningsAnnual = 0;
 			var currentDate = new Date();
@@ -46,27 +46,22 @@ router.post("/processOrder", function(request, response){
 
 
 router.get('/fornecedorcomprarParafusos',function(request,response){
-	//console.log(request.user);
-	//console.log(request.isAuthenticated());
-		reque.get('http://localhost:8094/bitrix/getParafusos', function(error,response2,body){
-		/*	var earningsAnnual = 0;
-			var currentDate = new Date();
-			var year = currentDate.getFullYear().toString();
-			var month = (currentDate.getMonth() + 1).toString();
-*/
+
+		reque.get('http://localhost:8091/bitrix/getParafusos', function(error,response2,body){
+			reque.get('http://localhost:8092/dynamics/read?no=70061', function(error,response2,body1){
+
 			var bitrix = JSON.parse(body);
-			var precoParafusos = bitrix.body;
-/*
-			for(var i = 0 ; i < bitrix.data.length ; i++){
-				var precoParafusos = bitrix.data[i].(0, 
-					
-			} */
+			var dynamics = JSON.parse(body1);
+
 			response.set("Content-Type", "text/html");
-			response.render('parafusos', {body: bitrix});
+			response.render('parafusos', {body: bitrix, body1: dynamics});
 		});
+	});
 	
 	
 });
+
+
 
 
 
@@ -83,7 +78,7 @@ router.post('/fornecedorcomprarParafusos', function(request, response) {
 	
 
 			var options = {
-				url : 'http://localhost:8091/dynamics/createOrderParafusos',
+				url : 'http://localhost:8092/dynamics/createOrderParafusos',
 				method: 'POST',
 				dataType : 'json',
 				headers: headersOpt,
@@ -125,7 +120,7 @@ router.post('/fornecedorcomprarMadeira', function(request, response) {
 	
 
 			var options = {
-				url : 'http://localhost:8091/dynamics/createOrderMadeira',
+				url : 'http://localhost:8092/dynamics/createOrderMadeira',
 				method: 'POST',
 				dataType : 'json',
 				headers: headersOpt,
