@@ -35,8 +35,8 @@ router.get('/encomendar', function(request, response) {
 	
 router.post('/encomendar', function(request, response) {
 	const produtcId = request.query.id;
-	var currentDate = new Date.parse();
-	console.log(currentDate);
+	var currentDate = new Date();
+	console.log(currentDate.getUTCDate());
 
 	reque.get('http://localhost:8095/jasminapi/getItems', function(error,response2,body){
 		reque.get('http://localhost:8095/jasminapi/getItems/' + produtcId, function(error,response2,body1){
@@ -198,18 +198,18 @@ router.post('/encomendar', function(request, response) {
 					"transactions": [{
 						"item_list": {
 							"items": [{
-								"name": "Red Sox Hat",
+								"name": item.root.data.itemKey,
 								"sku": "001",
-								"price": "25.00",
-								"currency": "USD",
+								"price": item.root.data.amount,
+								"currency": "EUR",
 								"quantity": 1
 							}]
 						},
 						"amount": {
-							"currency": "USD",
-							"total": "25.00"
+							"currency": "EUR",
+							"total": item.root.data.amount
 						},
-						"description": "Hat for the best team ever"
+						"description": item.root.data.description
 					}]
 				};
 				
