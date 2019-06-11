@@ -9,7 +9,7 @@ const headersOpt = {
 router.get('/',function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-		reque.get('http://localhost:8089/jasminapi/getOrder', function(error,response2,body){
+		reque.get('http://localhost:8096/jasminapi/getOrder', function(error,response2,body){
 			var earningsMonthly = 0;
 			var earningsAnnual = 0;
 			var currentDate = new Date();
@@ -29,7 +29,8 @@ router.get('/',function(request,response){
 					}
 				}		
 			}
-			var username = request.user.usename
+			var username = request.user.username;
+			console.log(username);
 			earningsAnnual = (earningsAnnual).toFixed(2);
 			earningsMonthly = (earningsMonthly).toFixed(2);
 			response.set("Content-Type", "text/html");
@@ -59,7 +60,7 @@ router.get('/fornecedorcomprarParafusosNav',function(request,response){
 			var dynamics = JSON.parse(body1);
 
 			response.set("Content-Type", "text/html");
-			response.render('parafusos', {body: bitrix, body1: dynamics});
+			response.render('admin/parafusos', {body: bitrix, body1: dynamics});
 		});
 	});
 	
@@ -78,7 +79,7 @@ router.get('/fornecedorcomprarMadeiraNav',function(request,response){
 		var dynamics = JSON.parse(body1);
 
 		response.set("Content-Type", "text/html");
-		response.render('madeira', {body: bitrix, body1: dynamics});
+		response.render('admin/madeira', {body: bitrix, body1: dynamics});
 	});
 });
 
@@ -86,16 +87,6 @@ router.get('/fornecedorcomprarMadeiraNav',function(request,response){
 });
 
 
-
-
-
-
-router.get('/fornecedorcomprarParafusosNav', function(request, response) {
-	response.set("Content-Type", "text/html");
-	response.render('parafusos', {
-		errors: []
-	})
-});
 	
 	
 router.post('/fornecedorcomprarParafusosNav', function(request, response) {
@@ -129,15 +120,9 @@ router.post('/fornecedorcomprarParafusosNav', function(request, response) {
 					}
 				});			
 
-			response.redirect('parafusos');
-
+				response.redirect('/admin');
 		});
-router.get('/fornecedorcomprarMadeiraNav', function(request, response) {
-	response.set("Content-Type", "text/html");
-	response.render('madeira', {
-		errors: []
-	})
-});
+
 			
 			
 router.post('/fornecedorcomprarMadeiraNav', function(request, response) {
@@ -171,19 +156,13 @@ router.post('/fornecedorcomprarMadeiraNav', function(request, response) {
 					}
 				});			
 
-			response.redirect('madeira');
+				response.redirect('/admin');
 
 		});
 
-		router.get('/fornecedorcomprarMadeiraBitrix', function(request, response) {
-			response.set("Content-Type", "text/html");
-			response.render('madeira', {
-				errors: []
-			})
-		});
 					
 					
-		router.post('/fornecedorcomprarMadeiraBitrix', function(request, response) {
+router.post('/fornecedorcomprarMadeiraBitrix', function(request, response) {
 			
 		
 					var options = {
@@ -212,18 +191,13 @@ router.post('/fornecedorcomprarMadeiraNav', function(request, response) {
 							}
 						});			
 		
-					response.redirect('madeira');
+						response.redirect('/admin');
 		
 				});
-				router.get('/fornecedorcomprarParafusosBitrix', function(request, response) {
-					response.set("Content-Type", "text/html");
-					response.render('parafusos', {
-						errors: []
-					})
-				});
+
 							
 							
-				router.post('/fornecedorcomprarParafusosBitrix', function(request, response) {
+router.post('/fornecedorcomprarParafusosBitrix', function(request, response) {
 					
 				
 							var options = {
@@ -251,8 +225,8 @@ router.post('/fornecedorcomprarMadeiraNav', function(request, response) {
 								if(!error && response.statusCode == 200){
 									}
 								});			
-				
-							response.redirect('parafusos');
+
+								response.redirect('/admin');
 				
 						});
 
