@@ -6,35 +6,7 @@
 
 
             <!-- Content Row -->
-            <form  action="/admin/fornecedorcomprarMadeira" method="POST">
-            <div class="col-xl-8 col-md-12 mb-6">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Preço Fornecedor Bitrix24</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= body.price %> €</div>
-                    </div>
-                    
-        
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user" id="numeroOrder" placeholder="Insira um número de Encomenda"
-                          name="numeroOrder" required>
-                        </div>
-                      <div class="text-center">
-                          <button class="small" type="submit">Comprar Madeira!</button>           
-                      </div>                      
-                  
-                     
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </form>
+           
       <div class="row">
 
        <div class="col-xl-3 col-md-6 mb-4">
@@ -78,7 +50,7 @@
   </div>
   <% } %>
 
-  <form  action="/admin/fornecedorcomprarMadeira" method="POST">
+  <form  action="/admin/fornecedorcomprarMadeiraNav" method="POST">
         
     <div class="col-sm-6 mb-3 mb-sm-0">
         <input type="text" class="form-control form-control-user" id="numeroOrder" placeholder="Insira um número de Encomenda"
@@ -89,5 +61,14 @@
     </div>                      
 
    </form>
+  </form>
+
+  <form  action="/admin/fornecedorcomprarMadeiraBitrix" method="POST">
+
+   <div class="text-center">
+       <button class="small" type="submit">Comprar Madeira Bitrix!</button>           
+   </div>                      
+
+  </form>
 </body>
 </html>

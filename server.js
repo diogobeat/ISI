@@ -61,9 +61,9 @@ app.set('view engine', 'ejs');
 app.set('views','views');
 
 global.connection = mysql.createConnection({  // DataBase Connection
-	host     : 'projectmc.ddns.net',
-	user     : 'isi2019',
-	password : 'vem6hrua19',
+	host     : '127.0.0.1',
+	user     : 'root',
+	password : 'vem6hrua',
 	database : 'isi',
 }).on('enqueue', function (sequence) {
 	if ('Query' === sequence.constructor.name) {

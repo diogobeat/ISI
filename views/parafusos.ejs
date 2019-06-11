@@ -60,14 +60,22 @@
 
   <% } %>
 
-  <form  action="/admin/fornecedorcomprarParafusos" method="POST">
+  <form  action="/admin/fornecedorcomprarParafusosNav" method="POST">
         
     <div class="col-sm-6 mb-3 mb-sm-0">
         <input type="text" class="form-control form-control-user" id="numeroOrder" placeholder="Insira um número de Encomenda"
         name="numeroOrder" required>
       </div>
     <div class="text-center">
-        <button class="small" type="submit">Comprar Parafusos!</button>           
+        <button class="small" type="submit">Comprar Parafusos Nav!</button>           
+    </div>                      
+
+   </form>
+
+   <form  action="/admin/fornecedorcomprarParafusosBitrix" method="POST">
+
+    <div class="text-center">
+        <button class="small" type="submit">Comprar Parafusos Bitrix!</button>           
     </div>                      
 
    </form>
