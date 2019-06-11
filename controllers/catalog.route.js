@@ -34,7 +34,18 @@ router.get('/encomendar', function(request, response) {
 	
 	
 router.post('/encomendar', function(request, response) {
+	const produtcId = request.query.id;
+	var currentDate = new Date.parse();
+	console.log(currentDate);
 
+	reque.get('http://localhost:8095/jasminapi/getItems', function(error,response2,body){
+		reque.get('http://localhost:8095/jasminapi/getItems/' + produtcId, function(error,response2,body1){
+			var item = JSON.parse(body1);
+			console.log(item.root.data.amount);
+		var jasmin = JSON.parse(body);
+		for ( var i = 0 ; i < jasmin.root.data.length; i ++){
+			
+		}
 	var upsJson = {
 		url : 'https://wwwcie.ups.com/rest/Rate',
 		method: 'POST',
@@ -136,18 +147,18 @@ router.post('/encomendar', function(request, response) {
 		json : {	"documentType": "ECL",
 			"serie" : "2019",
 			"buyerCustomerParty": "JAMARAL",
-			"documentDate": "2019-06-16T00:00:00",
+			"documentDate": "2019-11-16",
 			"paymentMethod": "Num",
 			"deliveryTerm": "TRANSP",
 			"company": "Default",
 			"documentLines": [
 			  {
-				"salesItem": "ARECA",
+				"salesItem": item.root.data.itemKey,
 				"quantity": 1,
 				"unit" :"UN",
 				"itemTaxSchema" :"IVA-TR",
 				"unitPrice": {
-				  "amount": 125
+				  "amount": item.root.data.amount
 				}
 			  }
 			]
@@ -160,7 +171,7 @@ router.post('/encomendar', function(request, response) {
 				dataType : 'json',
 				json: {
 					"company_id": "72407",
-        "date": "2019-04-09T17:31:05+0100",
+        "date": "2018-11-16T00:00:00",
         "expiration_date": "2019-05-09",
         "document_set_id": "123228",
         "supplier_id": "533438",
@@ -225,6 +236,8 @@ router.post('/encomendar', function(request, response) {
 						})
 					}
 				});
+			});
+		});
 
 });
 
