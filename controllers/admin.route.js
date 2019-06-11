@@ -9,7 +9,7 @@ const headersOpt = {
 router.get('/',function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-		reque.get('http://localhost:8096/jasminapi/getOrder', function(error,response2,body){
+		reque.get('http://localhost:8089/jasminapi/getOrder', function(error,response2,body){
 			var earningsMonthly = 0;
 			var earningsAnnual = 0;
 			var currentDate = new Date();
@@ -29,10 +29,14 @@ router.get('/',function(request,response){
 					}
 				}		
 			}
+			var username = request.user.usename
+			earningsAnnual = (earningsAnnual).toFixed(2);
+			earningsMonthly = (earningsMonthly).toFixed(2);
 			response.set("Content-Type", "text/html");
 			response.render('admin/index', {body: jasmin,
 											earningsMonthly : earningsMonthly,
-											earningsAnnual :earningsAnnual});
+											earningsAnnual :earningsAnnual,
+											username: username});
 		});
 	
 	
