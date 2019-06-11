@@ -42,6 +42,7 @@ router.get('/',function(request,response){
 	
 });
 
+
 router.post("/processOrder", function(request, response){
 	console.log(require('./public/jquery/teste'))
 });
@@ -49,7 +50,7 @@ router.post("/processOrder", function(request, response){
 // Fornecedores
 
 
-router.get('/fornecedorcomprarParafusos',function(request,response){
+router.get('/fornecedorcomprarParafusosNav',function(request,response){
 
 		reque.get('http://localhost:8091/bitrix/getParafusos', function(error,response2,body){
 			reque.get('http://localhost:8092/dynamics/read?no=70061', function(error,response2,body1){
@@ -68,7 +69,7 @@ router.get('/fornecedorcomprarParafusos',function(request,response){
 
 
 
-router.get('/fornecedorcomprarMadeira',function(request,response){
+router.get('/fornecedorcomprarMadeiraNav',function(request,response){
 
 	reque.get('http://localhost:8091/bitrix/getMadeira', function(error,response2,body){
 		reque.get('http://localhost:8092/dynamics/read?no=70063', function(error,response2,body1){
@@ -89,15 +90,15 @@ router.get('/fornecedorcomprarMadeira',function(request,response){
 
 
 
-router.get('/fornecedorcomprarParafusos', function(request, response) {
+router.get('/fornecedorcomprarParafusosNav', function(request, response) {
 	response.set("Content-Type", "text/html");
-	response.render('admin/fornecedor', {
+	response.render('parafusos', {
 		errors: []
 	})
 });
 	
 	
-router.post('/fornecedorcomprarParafusos', function(request, response) {
+router.post('/fornecedorcomprarParafusosNav', function(request, response) {
 	
 
 			var options = {
@@ -128,18 +129,18 @@ router.post('/fornecedorcomprarParafusos', function(request, response) {
 					}
 				});			
 
-			response.redirect('/admin/fornecedorcomprarParafusos');
+			response.redirect('parafusos');
 
 		});
-router.get('/fornecedorcomprarMadeira', function(request, response) {
+router.get('/fornecedorcomprarMadeiraNav', function(request, response) {
 	response.set("Content-Type", "text/html");
-	response.render('admin/fornecedor', {
+	response.render('madeira', {
 		errors: []
 	})
 });
 			
 			
-router.post('/fornecedorcomprarMadeira', function(request, response) {
+router.post('/fornecedorcomprarMadeiraNav', function(request, response) {
 	
 
 			var options = {
@@ -170,9 +171,90 @@ router.post('/fornecedorcomprarMadeira', function(request, response) {
 					}
 				});			
 
-			response.redirect('/admin/fornecedorcomprarMadeira');
+			response.redirect('madeira');
 
 		});
+
+		router.get('/fornecedorcomprarMadeiraBitrix', function(request, response) {
+			response.set("Content-Type", "text/html");
+			response.render('madeira', {
+				errors: []
+			})
+		});
+					
+					
+		router.post('/fornecedorcomprarMadeiraBitrix', function(request, response) {
+			
+		
+					var options = {
+						url : 'http://localhost:8091/bitrix/createOrder',
+						method: 'POST',
+						dataType : 'json',
+						headers: headersOpt,
+						json: {
+							"fields": {
+							  "siteId": "s1",
+							  "userId": "1",
+							  "orderTopic": "",
+							  "responsibleId": "1",
+							  "userDescription": "",
+							  "personTypeId": "1",
+							  "currency":"euro",
+							  "lid":"1",
+							  "price":"100",
+							  "additionalInfo": "Madeira"
+							}
+						  }
+								}
+					
+					reque.post(options, function(error, response){
+						if(!error && response.statusCode == 200){
+							}
+						});			
+		
+					response.redirect('madeira');
+		
+				});
+				router.get('/fornecedorcomprarParafusosBitrix', function(request, response) {
+					response.set("Content-Type", "text/html");
+					response.render('parafusos', {
+						errors: []
+					})
+				});
+							
+							
+				router.post('/fornecedorcomprarParafusosBitrix', function(request, response) {
+					
+				
+							var options = {
+								url : 'http://localhost:8091/bitrix/createOrder',
+								method: 'POST',
+								dataType : 'json',
+								headers: headersOpt,
+								json: {
+									"fields": {
+									  "siteId": "s1",
+									  "userId": "1",
+									  "orderTopic": "",
+									  "responsibleId": "1",
+									  "userDescription": "",
+									  "personTypeId": "1",
+									  "currency":"euro",
+									  "lid":"1",
+									  "price":"100",
+									  "additionalInfo": "Parafusos"
+									}
+								  }
+										}
+							
+							reque.post(options, function(error, response){
+								if(!error && response.statusCode == 200){
+									}
+								});			
+				
+							response.redirect('parafusos');
+				
+						});
 
 
 module.exports = router;
