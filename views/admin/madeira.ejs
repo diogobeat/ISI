@@ -4,17 +4,14 @@
           <!-- Begin Page Content -->
    <div class="container-fluid">
 
-
             <!-- Content Row -->
            
       <div class="row">
-
-       <div class="col-xl-3 col-md-6 mb-4">
+       <div>
         <div class="card border-left-primary shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                  <% if (parseFloat(body.price) < parseFloat(body1.unitPrice)) { %> 
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Preço Fornecedor Bitrix24</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800"><%= body.price %> €</div>
               </div>
@@ -25,18 +22,13 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <%  } else { %>
-    <div class="row">
-     
-
-      <div class="col-xl-3 col-md-6 mb-4">
-       <div class="card border-left-primary shadow h-100 py-2">
+  
+      <div>
+       <div class="card border-left-success shadow h-100 py-2">
          <div class="card-body">
            <div class="row no-gutters align-items-center">
              <div class="col mr-2">
-               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Preço Fornecedor Dynamics NAV </div>
+               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Preço Fornecedor Dynamics NAV </div>
                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= body1.unitPrice %> €</div>
              </div>
              <div class="col-auto">
@@ -46,29 +38,38 @@
          </div>
        </div>
      </div>
-   </div>
-  </div>
-  <% } %>
-
-  <form  action="/admin/fornecedorcomprarMadeiraNav" method="POST">
+    </div>
+  
+<div class="row">
+  <form  action="/admin/fornecedorcomprarParafusosNav" method="POST">
         
-    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="col">
         <input type="text" class="form-control form-control-user" id="numeroOrder" placeholder="Insira um número de Encomenda"
         name="numeroOrder" required>
-      </div>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control form-control-user" id="qnt" placeholder="Quantidade a Encomendar"
+      name="numeroOrder" required>
+  </div>
+
+</div>
+<div class="row">
     <div class="text-center">
-        <button class="small" type="submit">Comprar Madeira!</button>           
+        <!-- <button class="small" type="submit">Comprar Madeira!</button> -->  
+        <button class="button" type="submit" class="btn btn-primary">Comprar Madeira!</button>       
     </div>                      
 
-   </form>
+   
   </form>
 
   <form  action="/admin/fornecedorcomprarMadeiraBitrix" method="POST">
 
    <div class="text-center">
-       <button class="small" type="submit">Comprar Madeira Bitrix!</button>           
+       <!-- <button class="small" type="submit">Comprar Madeira Bitrix!</button> --> 
+       <button type="button" type="submit" class="btn btn-primary">Comprar Madeira Bitrix!</button>         
    </div>                      
 
   </form>
+  
 </body>
 </html>

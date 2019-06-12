@@ -18,8 +18,10 @@ client.on("connect", function(){
 
 
 router.get('/',function(request,response){
+var teste = ''; 
 	client.on("message", function(topic, message){	 
-		console.log(message.toString().split(" ")[4]);
+		var teste = message.toString().split(" ")[4];
+		console.log(teste);
 		client.end();
 	});
 	var username = request.user.username;
@@ -52,6 +54,9 @@ router.get('/',function(request,response){
 											earningsMonthly : earningsMonthly,
 											earningsAnnual :earningsAnnual});
 		});
+
+		
+	
 });
 
 
@@ -79,7 +84,7 @@ router.get('/compras',function(request,response){
 			
 			response.set("Content-Type", "text/html");
 			response.render('admin/compras', {body: jasmin,
-			username: username});
+			username: username });
 		});
 	
 	
@@ -149,9 +154,9 @@ router.post('/fornecedorcomprarParafusosNav', function(request, response) {
 					"Document_Date": "2019-01-24",
 					"Due_Date": "2019-01-31",
 					"Type": "Item",
-					"No_Item": "70061",
+					"No_Item": "70063",
 					"Quantity": "100",
-					"Unit_Price": "2"					
+					"Unit_Price": "40"					
 			}
 						}
 
@@ -172,11 +177,11 @@ router.post('/fornecedorcomprarParafusosNav', function(request, response) {
 					"AccountingParty":"Soflor",
 					"documentLines": [
 					{
-						"purchasesItem": "PARAFUSO",
-						"quantity" : 100,
+						"purchasesItem": "MADEIRA",
+						"quantity" : "100",
 						"unit" : "UN",
 						"unitPrice" : {
-							"amount" : 100
+							"amount" : 40
 						}
 						
 					}
@@ -186,7 +191,8 @@ router.post('/fornecedorcomprarParafusosNav', function(request, response) {
 			
 			reque.post(options, function(error, response){
 				if(!error && response.statusCode == 200){
-					reque.post(jsonJasmin, function(eror, response){
+					console.log("NAV: " + JSON.stringify(response));
+					reque.post(jsonJasmin, function(error, response){
 						if(!error && response.statusCode == 200){
 							console.log("Jasmin: " + JSON.stringify(response));
 						}
@@ -194,14 +200,41 @@ router.post('/fornecedorcomprarParafusosNav', function(request, response) {
 					}
 				});			
 
-				response.redirect('/admin/fornecedorcomprarParafusosNav');
+				response.redirect('/admin/fornecedorcomprarMadeiraNav');
 		});
 
 			
 			
 router.post('/fornecedorcomprarMadeiraNav', function(request, response) {
-	
 
+	var jsonJasmin = {
+		url:"http://localhost:8098/jasminapi/postPurchaseOrder",
+		method: "POST",
+		dataType: "JSON",
+		headers: headersOpt,
+		json : {
+			"sellerSupplierParty": "SOFLOR",
+			"SellerSupplierPartyName":"SOFLOR",
+			"documentDate":"2019-06-19",
+			"company":"Default",
+			"deliveryTerm":"Transp",
+			"PaymentMethod":"TRA",
+			"PaymentTerm":"01",
+			"LoadingCountry":"PT",
+			"AccountingParty":"Soflor",
+			"documentLines": [
+			{
+				"purchasesItem": "MADEIRA",
+				"quantity" : "100",
+				"unit" : "UN",
+				"unitPrice" : {
+					"amount" : 10
+				}
+				
+			}
+			]
+		 }
+	}
 			var options = {
 				url : 'http://localhost:8092/dynamics/createOrderMadeira',
 				method: 'POST',
@@ -225,44 +258,15 @@ router.post('/fornecedorcomprarMadeiraNav', function(request, response) {
 			}
 						}
 
-						var jsonJasmin = {
-							url:"http://localhost:8098/jasminapi/postPurchaseOrder",
-							method: "POST",
-							dataType: "JSON",
-							headers: headersOpt,
-							json : {
-								"sellerSupplierParty": "SOFLOR",
-								"SellerSupplierPartyName":"SOFLOR",
-								"documentDate":"2019-06-19",
-								"company":"Default",
-								"deliveryTerm":"Transp",
-								"PaymentMethod":"TRA",
-								"PaymentTerm":"01",
-								"LoadingCountry":"PT",
-								"AccountingParty":"Soflor",
-								"documentLines": [
-								{
-									"purchasesItem": "MADEIRA",
-									"quantity" : 100,
-									"unit" : "UN",
-									"unitPrice" : {
-										"amount" : 10
-									}
-									
-								}
-								]
-							 }
-						}
+
+				
 			
-			reque.post(options, function(error, response){
-				if(!error && response.statusCode == 200){
-					reque.post(jsonJasmin, function(error, response){
-						if(!error && response.statusCode == 200){
-							console.log("Jasmin Madeira: " + JSON.stringify(response));
-						}
-					})
-					}
-				});			
+						reque.post(jsonJasmin, function(error, response){
+								console.log("Jasmin: " + JSON.stringify(response));
+								reque.post(options, function(error, response2){	
+
+								})
+							});				
 
 				response.redirect('/admin/fornecedorcomprarMadeiraNav');
 

@@ -117,8 +117,6 @@
                           <th>Description</th>
                           <th>Quantity</th>   
                           <th>Amount</th>
-                          
-                          <th>Efetuar Pagamento</th> 
                         </tr>
                       </thead>
                       
@@ -130,8 +128,7 @@
                         <td><%= body.data[i].description %></td>
                         <td><%= body.data[i].quantity %></td>
                         <td><%= body.data[i].amount %> €</td>
-                        <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-                        <td><script>paypal.Buttons().render('body');</script> </td>
+
                       </tr>
                       <% } %>
                       </tbody>
@@ -142,49 +139,7 @@
                  
             
 
-                  <div id="paypal-button-container"></div>
-                  <script>
-                  paypal.Button.render({
-
-                      env: 'sandbox',
-
-                      client: {
-                        sanbox: 'AR61iSCJeJgMfwuuuuVMfCVnce5D1PgYgKIGRapFnQNWMj6DYcOhpkoCiPWITPVYFHgkdX6kjdwgtUkV',
-                        production: 'EG8JakGKuS7_EBPZ4YYQpsUwvkl4f3JBCncwk_lkDOEfXl65H2i0Juo1WqNTIHGHrucYWSnVVgzRQxTW'
-                      },
-
-                      commit: true,
-
-                      payment: function(data, actions){
-
-                        return actions.payment.create({
-                          payment: (
-                            transactions:[ 
-                            {
-                                amount: (total: '1', currency: 'EUR')
-                              }
-                              ]
-                          )
-                        });
-                      },
-
-
-                      onAuthorize: function(data, actions){
-
-                        return actions.payment.execute().then(function(){
-                          window.alert("payment Complete");
-                        });
-
-                      }
-
-                  
-                  },
-                  '#paypal-button-container');
-
-
-          
-                  
-                  </script>
+        
             
                   
              </hr>
