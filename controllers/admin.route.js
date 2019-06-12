@@ -9,7 +9,7 @@ const headersOpt = {
 router.get('/',function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-		reque.get('http://localhost:8096/jasminapi/getOrder', function(error,response2,body){
+		reque.get('http://localhost:8089/jasminapi/getOrder', function(error,response2,body){
 			var earningsMonthly = 0;
 			var earningsAnnual = 0;
 			var currentDate = new Date();
@@ -29,21 +29,43 @@ router.get('/',function(request,response){
 					}
 				}		
 			}
-			var username = request.user.username;
-			console.log(username);
 			earningsAnnual = (earningsAnnual).toFixed(2);
 			earningsMonthly = (earningsMonthly).toFixed(2);
 			response.set("Content-Type", "text/html");
 			response.render('admin/index', {body: jasmin,
 											earningsMonthly : earningsMonthly,
-											earningsAnnual :earningsAnnual,
-											username: username});
+											earningsAnnual :earningsAnnual});
 		});
 	
 	
 });
 
 
+router.get('/vendas',function(request,response){
+	//console.log(request.user);
+	//console.log(request.isAuthenticated());
+		reque.get('http://localhost:8089/jasminapi/getOrder', function(error,response2,body){
+			var jasmin = JSON.parse(body);
+			
+			response.set("Content-Type", "text/html");
+			response.render('admin/vendas', {body: jasmin});
+		});
+	
+	
+});
+
+router.get('/compras',function(request,response){
+	//console.log(request.user);
+	//console.log(request.isAuthenticated());
+		reque.get('http://localhost:8090/jasminapi/getpurchasesorder', function(error,response2,body){
+			var jasmin = JSON.parse(body);
+			
+			response.set("Content-Type", "text/html");
+			response.render('admin/compras', {body: jasmin});
+		});
+	
+	
+});
 router.post("/processOrder", function(request, response){
 	console.log(require('./public/jquery/teste'))
 });
