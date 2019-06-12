@@ -16,13 +16,11 @@
               <tr>
                 <th>ID</th>
                 <th>Document Date</th>
-                <th>Buyer Customer Party Name</th>
+                <th>Seller</th>
                 <th>Amount</th>
                 <th>Quantity</th>
                 <th>Description</th>
-                <th>accountingParty</th>
-                <th>salesItem</th>
-                <th>Process Order</th>
+             
               </tr>
             </thead>
             <tbody>
@@ -34,9 +32,6 @@
                 <td><%= body.data[i].amount %>€</td>
                 <td><%= body.data[i].quantity %></td>
                 <td><%= body.data[i].description %></td>
-                <td><%= body.data[i].accountingParty %></td>
-                <td><%= body.data[i].salesItem %></td>
-                <td><button id="tableMain tbody tr" type="button">Order</button></td>
               </tr>
               <% } %>
             </tbody>

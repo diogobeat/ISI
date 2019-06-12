@@ -225,8 +225,10 @@ router.post('/encomendar', function(request, response) {
 				  }
 				});
 
-				reque.post(upsJson, function(error,response,body){
+				reque.post(upsJson, function(error,response,body3){
 					if(!error && response.statusCode == 200){
+						//var teste = JSON.parse(response);
+						//console.log(response.RateResponse.TransportationCharges.MonetaryValue);
 						console.log("UPS: " + JSON.stringify(response));
 						reque.post(jasminJSON, function(error, response){
 							console.log("Jasmin: " + JSON.stringify(response));

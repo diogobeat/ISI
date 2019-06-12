@@ -4,12 +4,30 @@ const reque = require('request');
 const headersOpt = {  
 	"content-type": "application/json",
 };
+const mqtt = require("mqtt");
+const client = mqtt.connect("mqtt://orwell.unpigs.com");
 
-		 
+TOPIC = "sensors/distancemeter";
+
+client.on("connect", function(){
+	client.subscribe(TOPIC);
+});
+
+	client.on("message", function(topic, message){	 
+		console.log("Teste:1 " + message.toString().split(" ")[4]);
+		//console.log(request.user);
+		//console.log(request.isAuthenticated());
+		teste(message);
+	});
+
+	function teste(message){
+		return message;
+	}
+
+
 router.get('/',function(request,response){
-	//console.log(request.user);
-	//console.log(request.isAuthenticated());
-		reque.get('http://localhost:8089/jasminapi/getOrder', function(error,response2,body){
+	teste();
+		reque.get('http://localhost:8096/jasminapi/getOrder', function(error,response2,body){
 			var earningsMonthly = 0;
 			var earningsAnnual = 0;
 			var currentDate = new Date();
@@ -38,13 +56,15 @@ router.get('/',function(request,response){
 		});
 	
 	
+
+
 });
 
 
 router.get('/vendas',function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-		reque.get('http://localhost:8089/jasminapi/getOrder', function(error,response2,body){
+		reque.get('http://localhost:8096/jasminapi/getOrder', function(error,response2,body){
 			var jasmin = JSON.parse(body);
 			
 			response.set("Content-Type", "text/html");
@@ -57,7 +77,7 @@ router.get('/vendas',function(request,response){
 router.get('/compras',function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
-		reque.get('http://localhost:8090/jasminapi/getpurchasesorder', function(error,response2,body){
+		reque.get('http://localhost:8098/jasminapi/getpurchasesorder', function(error,response2,body){
 			var jasmin = JSON.parse(body);
 			
 			response.set("Content-Type", "text/html");
@@ -66,9 +86,7 @@ router.get('/compras',function(request,response){
 	
 	
 });
-router.post("/processOrder", function(request, response){
-	console.log(require('./public/jquery/teste'))
-});
+
 
 // Fornecedores
 
