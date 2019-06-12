@@ -48,19 +48,6 @@
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
           <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-          <div class="dropdown no-arrow">
-            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-              <div class="dropdown-header">Dropdown Header:</div>
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
         </div>
         <!-- Card Body -->
         <div class="card-body">
@@ -71,49 +58,6 @@
       </div>
     </div>
   </div>
-
-  <form action="/admin/processOrder" method="POST">
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered" id="tableMain" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Document Date</th>
-                <th>Buyer Customer Party Name</th>
-                <th>Amount</th>
-                <th>Quantity</th>
-                <th>Description</th>
-                <th>accountingParty</th>
-                <th>salesItem</th>
-                <th>Process Order</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% for(var i = 0 ; i < body.data.length ; i++){ %>
-              <tr>
-                <td><%= i %></td>
-                <td><%= body.data[i].documentDate %></td>
-                <td><%= body.data[i].buyerCustomerPartyName %></td>
-                <td><%= body.data[i].amount %>€</td>
-                <td><%= body.data[i].quantity %></td>
-                <td><%= body.data[i].description %></td>
-                <td><%= body.data[i].accountingParty %></td>
-                <td><%= body.data[i].salesItem %></td>
-                <td><button id="tableMain tbody tr" type="button">Order</button></td>
-              </tr>
-              <% } %>
-            </tbody>
-          </table>
-  
-        </div>
-      </div>
-    </div>
-  </form>
 </div>
 
 
