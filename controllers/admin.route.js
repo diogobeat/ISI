@@ -7,26 +7,23 @@ const headersOpt = {
 const mqtt = require("mqtt");
 const client = mqtt.connect("mqtt://orwell.unpigs.com");
 
+
 TOPIC = "sensors/distancemeter";
 
 client.on("connect", function(){
 	client.subscribe(TOPIC);
 });
 
-	client.on("message", function(topic, message){	 
-		console.log("Teste:1 " + message.toString().split(" ")[4]);
-		//console.log(request.user);
-		//console.log(request.isAuthenticated());
-		teste(message);
-	});
 
-	function teste(message){
-		return message;
-	}
 
 
 router.get('/',function(request,response){
-	teste();
+	client.on("message", function(topic, message){	 
+		console.log(message.toString().split(" ")[4]);
+		client.end();
+	});
+	var username = request.user.username;
+	
 		reque.get('http://localhost:8096/jasminapi/getOrder', function(error,response2,body){
 			var earningsMonthly = 0;
 			var earningsAnnual = 0;
@@ -51,37 +48,38 @@ router.get('/',function(request,response){
 			earningsMonthly = (earningsMonthly).toFixed(2);
 			response.set("Content-Type", "text/html");
 			response.render('admin/index', {body: jasmin,
+											username: username,
 											earningsMonthly : earningsMonthly,
 											earningsAnnual :earningsAnnual});
 		});
-	
-	
-
-
 });
 
 
 router.get('/vendas',function(request,response){
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
+	var username = request.user.username;
 		reque.get('http://localhost:8096/jasminapi/getOrder', function(error,response2,body){
 			var jasmin = JSON.parse(body);
 			
 			response.set("Content-Type", "text/html");
-			response.render('admin/vendas', {body: jasmin});
+			response.render('admin/vendas', {body: jasmin,
+				username: username});
 		});
 	
 	
 });
 
 router.get('/compras',function(request,response){
+	var username = request.user.username;
 	//console.log(request.user);
 	//console.log(request.isAuthenticated());
 		reque.get('http://localhost:8098/jasminapi/getpurchasesorder', function(error,response2,body){
 			var jasmin = JSON.parse(body);
 			
 			response.set("Content-Type", "text/html");
-			response.render('admin/compras', {body: jasmin});
+			response.render('admin/compras', {body: jasmin,
+			username: username});
 		});
 	
 	
@@ -134,8 +132,6 @@ router.get('/fornecedorcomprarMadeiraNav',function(request,response){
 	
 	
 router.post('/fornecedorcomprarParafusosNav', function(request, response) {
-	
-
 			var options = {
 				url : 'http://localhost:8092/dynamics/createOrderParafusos',
 				method: 'POST',
@@ -158,9 +154,43 @@ router.post('/fornecedorcomprarParafusosNav', function(request, response) {
 					"Unit_Price": "2"					
 			}
 						}
+
+			var jsonJasmin = {
+				url:"http://localhost:8098/jasminapi/postPurchaseOrder",
+				method: "POST",
+				dataType: "JSON",
+				headers: headersOpt,
+				json : {
+					"sellerSupplierParty": "SOFLOR",
+					"SellerSupplierPartyName":"SOFLOR",
+					"documentDate":"2019-06-19",
+					"company":"Default",
+					"deliveryTerm":"Transp",
+					"PaymentMethod":"TRA",
+					"PaymentTerm":"01",
+					"LoadingCountry":"PT",
+					"AccountingParty":"Soflor",
+					"documentLines": [
+					{
+						"purchasesItem": "PARAFUSO",
+						"quantity" : 100,
+						"unit" : "UN",
+						"unitPrice" : {
+							"amount" : 100
+						}
+						
+					}
+					]
+				 }
+			}
 			
 			reque.post(options, function(error, response){
 				if(!error && response.statusCode == 200){
+					reque.post(jsonJasmin, function(eror, response){
+						if(!error && response.statusCode == 200){
+							console.log("Jasmin: " + JSON.stringify(response));
+						}
+					})
 					}
 				});			
 
@@ -194,9 +224,43 @@ router.post('/fornecedorcomprarMadeiraNav', function(request, response) {
 					"Unit_Price": "40"					
 			}
 						}
+
+						var jsonJasmin = {
+							url:"http://localhost:8098/jasminapi/postPurchaseOrder",
+							method: "POST",
+							dataType: "JSON",
+							headers: headersOpt,
+							json : {
+								"sellerSupplierParty": "SOFLOR",
+								"SellerSupplierPartyName":"SOFLOR",
+								"documentDate":"2019-06-19",
+								"company":"Default",
+								"deliveryTerm":"Transp",
+								"PaymentMethod":"TRA",
+								"PaymentTerm":"01",
+								"LoadingCountry":"PT",
+								"AccountingParty":"Soflor",
+								"documentLines": [
+								{
+									"purchasesItem": "MADEIRA",
+									"quantity" : 100,
+									"unit" : "UN",
+									"unitPrice" : {
+										"amount" : 10
+									}
+									
+								}
+								]
+							 }
+						}
 			
 			reque.post(options, function(error, response){
 				if(!error && response.statusCode == 200){
+					reque.post(jsonJasmin, function(error, response){
+						if(!error && response.statusCode == 200){
+							console.log("Jasmin Madeira: " + JSON.stringify(response));
+						}
+					})
 					}
 				});			
 

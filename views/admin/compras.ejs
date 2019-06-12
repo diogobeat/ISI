@@ -47,51 +47,6 @@
 
 
 
-<script>
-  $(function () {
-    $("#tableMain tbody tr").click(function () {
-      var tableData = $(this).children("td").map(function () {
-        $(this).parent("tr:first").remove();
-        return $(this).text();
-      }).get();
-      var teste = {
-        "buyerCustomerParty": tableData[6],
-        "documentDate": "2019-06-06T00:00:00",
-        "documentLines": [
-          {
-            "salesItem": tableData[7],
-            "description": tableData[5],
-            "quantity": parseFloat(tableData[4]),
-            "unitPrice": {
-              "amount": parseFloat(tableData[3]),
-              "symbol": "€"
-            }
-          }
-        ]
-      };
-      $.ajax({
-        type: 'POST',
-        url: 'http://localhost:8093/jasminapi/postBill',
-        dataType: "json",
-        contenttype: "application/json",
-        data: JSON.stringify(teste),
-        error: function (xhr, textStatus, error) {
-          alert("Fatura emitida com sucesso. Sera enviada por email ao cliente!");
-
-        },
-        success: function (data) {
-          alert("erro");
-        }
-
-
-      });
-    });
-  });
-
-
-
-</script>
-
 
 
 <!-- Scroll to Top Button-->
