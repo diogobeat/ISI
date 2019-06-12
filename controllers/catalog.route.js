@@ -146,7 +146,7 @@ router.post('/encomendar', function(request, response) {
 				dataType : 'json',
 		json : {	"documentType": "ECL",
 			"serie" : "2019",
-			"buyerCustomerParty": "JAMARAL",
+			"buyerCustomerParty": request.user.username,
 			"documentDate": "2019-11-16",
 			"paymentMethod": "Num",
 			"deliveryTerm": "TRANSP",
